@@ -1,5 +1,9 @@
 
-public class FeuBicolore 
+public class FeuBicolore extends Feu
 {
-	Bicolor couleur;
+	Tricolor couleur;
+	public FeuBicolore()
+	{
+		
+	}
 }

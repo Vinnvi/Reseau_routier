@@ -1,3 +1,5 @@
+// On met 1 semaphore max par extremite
+
 
 import javax.swing.text.Segment;
 import java.util.Timer;
@@ -18,7 +20,7 @@ public class Main
 			while(nbRepetitions > 0)
 			{	
 			}
-			System.out.println("Termin�!");
+			System.out.println("Termine!");
 			t.cancel();
 		}
     }
@@ -28,5 +30,7 @@ public class Main
 		SegmentRoute s2 = new SegmentRoute(10);
 		
 		JonctionSimple j = new JonctionSimple(s1,s2);
+		
+		
 	}
 }
