@@ -1,3 +1,4 @@
+package ElementControle;
 
 public class FeuBicolore extends Feu
 {

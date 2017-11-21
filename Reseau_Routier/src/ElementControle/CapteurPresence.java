@@ -1,3 +1,5 @@
+package ElementControle;
+import ElementReseau.SegmentRoute;
 
 public class CapteurPresence extends Capteur
 {

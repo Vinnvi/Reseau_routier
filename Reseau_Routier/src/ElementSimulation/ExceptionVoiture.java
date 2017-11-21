@@ -1,3 +1,4 @@
+package ElementSimulation;
 
 public class ExceptionVoiture extends Exception{
 	

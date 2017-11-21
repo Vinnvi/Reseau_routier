@@ -1,3 +1,4 @@
+package ElementControle;
 
 public abstract class Feu {
 	Tricolor couleur;

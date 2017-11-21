@@ -1,3 +1,7 @@
+package ElementReseau;
+import ElementControle.Feu;
+import ElementControle.Tricolor;
+import ElementSimulation.Voiture;
 
 public class PassagePieton extends JonctionSimple{
 	Feu feu;

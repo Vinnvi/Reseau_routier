@@ -1,9 +1,11 @@
+package ElementReseau;
+
 import java.util.ArrayList;
 
 public class Carrefour extends Jonction{
 	ArrayList <SegmentRoute> segments = new ArrayList<SegmentRoute>(3);
 
-	public void carrfour(){
+	public Carrefour(){
 		
 	}
 	
