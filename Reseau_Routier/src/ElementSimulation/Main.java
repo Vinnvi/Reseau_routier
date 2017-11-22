@@ -1,6 +1,8 @@
 package ElementSimulation;
 // On met 1 semaphore max par extremite
 import javax.swing.text.Segment;
+
+import ElementControle.FeuTricolore;
 import ElementReseau.Barriere;
 import ElementReseau.JonctionSimple;
 import ElementReseau.PassagePieton;
@@ -17,7 +19,7 @@ public class Main
 	public void lancerSimulation(ArrayList<Voiture> list) 
 	{
 		t = new Timer();
-		t.schedule(new Intervalle(list), 0, 1*1000);//action / delai / periode
+		t.schedule(new Intervalle(list), 0, 10000);//action / delai / periode
     }
 	class Intervalle extends TimerTask 
 	{
@@ -33,6 +35,12 @@ public class Main
 			while(nbRepetitions > 0)
 			{	
 				System.out.println("a!");
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				for(Voiture a : listVoitures)
 				{
 					try {
@@ -53,8 +61,10 @@ public class Main
 	{
 		Barriere b1 = new Barriere();
 		Barriere b2 = new Barriere();
-		PassagePieton p1 = new PassagePieton();
-		PassagePieton p2 = new PassagePieton();
+		FeuTricolore f1 = new FeuTricolore();
+		FeuTricolore f2 = new FeuTricolore();
+		PassagePieton p1 = new PassagePieton(f1);
+		PassagePieton p2 = new PassagePieton(f2);
 		SegmentRoute s1 = new SegmentRoute(20,b1,p1);
 		SegmentRoute s2 = new SegmentRoute(10,p1,p2);
 		

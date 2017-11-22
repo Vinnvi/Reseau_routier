@@ -14,6 +14,7 @@ public class SegmentRoute {
 	public SegmentRoute(int maLongeur,Jonction g,Jonction d){
 		longueur = maLongeur;
 		jonctionGauche = g;
+		g.set
 		jonctionDroite = d;
 	}
 	
