@@ -34,24 +34,60 @@ public class Voiture
 			if(positionSegment + vitesseActuelle < segmentActuel.getLongueur())
 			{
 				positionSegment += vitesseActuelle;
-				System.out.println("La voiture "+id+" est a la position "+positionSegment);
+				System.out.println(this.toString());
 			}
 			else
 			{
+				//Fin du parcours restant du segment	
 				distanceRestante = positionSegment + vitesseActuelle - segmentActuel.getLongueur();
 				segmentActuel.getJonctionDroite().avancer(this,distanceRestante);
+				
+				//Selection du prochain segment de route
+				if(segmentActuel.getJonctionGauche().getSegmentsLies().size() <= 1){ // La jonction n'est liée à aucun autre segment
+					System.out.println("Fin de route : la voiture a atteint le bout de la route");
+				}
+				else{
+				SegmentRoute nextSegment=null;
+					do{
+						int indiceSeg = (int) (Math.random() * (segmentActuel.getJonctionGauche().getSegmentsLies().size()-1) );
+						nextSegment = segmentActuel.getJonctionGauche().getSegmentsLies().get(indiceSeg);
+					}while(nextSegment == segmentActuel);
+					
+					//Positionnement dans le prochain segment /!\ non prise en compte du 1 de la jonction pour le moment
+					int distanceAParcourir = vitesseActuelle-distanceRestante; // Distance a Parcourir sur le nouveau segment
+					this.setSegmentActuel(nextSegment);
+					this.setPositionSegment(distanceAParcourir);
+				}
 			}
 		}
 		else{
 			if(positionSegment - vitesseActuelle > 0)
 			{
 				positionSegment -= vitesseActuelle;
-				System.out.println("La voiture "+id+" est a la position "+positionSegment);
+				System.out.println(this.toString());
 			}
 			else
 			{
+				//Fin du parcours restant du segment				
 				distanceRestante = vitesseActuelle - positionSegment;
 				segmentActuel.getJonctionGauche().avancer(this,distanceRestante);
+				
+				//Selection du prochain segment de route
+				if(segmentActuel.getJonctionGauche().getSegmentsLies().size() <= 1){ // La jonction n'est liée à aucun autre segment
+					System.out.println("Fin de route : la voiture a atteint le bout de la route");
+				}
+				else{
+					SegmentRoute nextSegment=null;
+					do{
+						int indiceSeg = (int) (Math.random() * (segmentActuel.getJonctionGauche().getSegmentsLies().size()) );
+						nextSegment = segmentActuel.getJonctionGauche().getSegmentsLies().get(indiceSeg);
+					}while(nextSegment == segmentActuel);
+					
+					
+					//Positionnement dans le prochain segment /!\ non prise en compte du 1 de la jonction pour le moment
+					int distanceAParcourir = vitesseActuelle-distanceRestante; // Distance a Parcourir sur le nouveau segment
+				}
+				
 			}
 		}
 		
@@ -70,5 +106,13 @@ public class Voiture
 	public int getId()
 	{
 		return id;
+	}
+	
+	public void setPositionSegment(int positionSegment) {
+		this.positionSegment = positionSegment;
+	}
+
+	public String toString(){
+		return "La voiture "+id+" est a la position "+positionSegment+" du segment "+segmentActuel.getName();
 	}
 }

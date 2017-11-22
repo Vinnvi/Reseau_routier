@@ -65,8 +65,8 @@ public class Main
 		FeuTricolore f2 = new FeuTricolore();
 		PassagePieton p1 = new PassagePieton(f1);
 		PassagePieton p2 = new PassagePieton(f2);
-		SegmentRoute s1 = new SegmentRoute(20,b1,p1);
-		SegmentRoute s2 = new SegmentRoute(10,p1,p2);
+		SegmentRoute s1 = new SegmentRoute(20,b1,p1,"autoroute A4");
+		SegmentRoute s2 = new SegmentRoute(10,p1,p2,"N118");
 		
 		Voiture v1 = new Voiture(3,4,s1,true);
 		ArrayList<Voiture> listVoitures = new ArrayList<Voiture>();
