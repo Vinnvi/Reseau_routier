@@ -5,33 +5,32 @@ import java.util.List;
 
 import ElementControle.Capteur;
 
-public class SegmentRoute {
+public class SegmentRoute<T extends Jonction> {
 	String name;
 	private int longueur;
 	private List<Capteur> capteurs = new ArrayList<Capteur>();
-	private Jonction jonctionGauche;
-	private Jonction jonctionDroite;
+	private T jonctionGauche;
+	private T jonctionDroite;
 	
-	public SegmentRoute(int maLongeur,Jonction g,Jonction d, String nom){
+	public SegmentRoute(int maLongeur,T g,T d, String nom){
 		longueur = maLongeur;
 		name = nom;
-		jonctionGauche = g;
-//		g.set
-		jonctionDroite = d;
+		setJonctionGauche(g);
+		setJonctionGauche(d);
 	}
 	
-	public void setJonctionGauche(Jonction j){
+	public void setJonctionGauche(T j){
 		this.jonctionGauche = j;
 		j.addSegmentRoute(this);
 	}
-	public void setJonctionDroite(Jonction j){
+	public void setJonctionDroite(T j){
 		this.jonctionDroite = j;
 		j.addSegmentRoute(this);
 	}
 	public Jonction getJonctionGauche() {
 		return jonctionGauche;
 	}
-	public Jonction getJonctionDroite() {
+	public T getJonctionDroite() {
 		return jonctionDroite;
 	}
 	public int getLongueur(){
