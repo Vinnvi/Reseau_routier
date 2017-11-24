@@ -22,9 +22,16 @@ public class Voiture
 		identifiant++;
 	}
 	
-	public void setEtat(SegmentRoute s,boolean sens,int vitesse,int positionSegment) throws ExceptionVoiture{
-		if(vitesse > vitMax){
-			throw new ExceptionVoiture();
+	public void setEtat(SegmentRoute s,boolean sens,int chVitesse,int chPos) throws ExceptionVoiture{
+		if(chVitesse > vitMax){
+			throw new ExceptionVoiture("La vitesse de la voiture est trop rapide");
+		}
+		else
+		{
+			segmentActuel = s;
+			sensActuel = sens;
+			vitesseActuelle = chVitesse;
+			positionSegment = chPos;
 		}
 	}
 	
@@ -42,7 +49,6 @@ public class Voiture
 				distanceRestante = positionSegment + vitesseActuelle - segmentActuel.getLongueur();
 				System.out.println(distanceRestante);
 				segmentActuel.getJonctionDroite().avancer(this,distanceRestante);
-				
 				//Selection du prochain segment de route
 				if(segmentActuel.getJonctionDroite().getSegmentsLies().size() <= 1){ // La jonction n'est liée à aucun autre segment
 					System.out.println("Fin de route : la voiture a atteint le bout de la route");
@@ -108,11 +114,13 @@ public class Voiture
 	{
 		return id;
 	}
-	
 	public void setPositionSegment(int positionSegment) {
 		this.positionSegment = positionSegment;
 	}
-
+	public int getVitesse()
+	{
+		return vitesseActuelle;
+	}
 	public String toString(){
 		return "La voiture "+id+" est a la position "+positionSegment+" du segment "+segmentActuel.getName();
 	}

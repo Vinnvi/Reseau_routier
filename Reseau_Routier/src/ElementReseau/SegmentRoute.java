@@ -16,15 +16,15 @@ public class SegmentRoute<T extends Jonction> {
 		longueur = maLongeur;
 		name = nom;
 		setJonctionGauche(g);
-		setJonctionGauche(d);
+		setJonctionDroite(d);
 	}
 	
 	public void setJonctionGauche(T j){
-		this.jonctionGauche = j;
+		jonctionGauche = j;
 		j.addSegmentRoute(this);
 	}
 	public void setJonctionDroite(T j){
-		this.jonctionDroite = j;
+		jonctionDroite = j;
 		j.addSegmentRoute(this);
 	}
 	public Jonction getJonctionGauche() {

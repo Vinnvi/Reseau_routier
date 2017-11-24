@@ -8,7 +8,7 @@ import ElementSimulation.Voiture;
 public abstract class Jonction {
 	protected final int longueur = 1;
 	private int idJonction;
-	private ArrayList <SegmentRoute>  segmentsLies = new ArrayList<>();
+	protected ArrayList <SegmentRoute>  segmentsLies = new ArrayList<>();
 	public abstract void avancer(Voiture v, int distanceRestante) throws ExceptionVoiture;
 	
 	public void addSegmentRoute(SegmentRoute s){

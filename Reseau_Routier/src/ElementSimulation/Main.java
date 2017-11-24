@@ -45,6 +45,7 @@ public class Main
 				{
 					try {
 						a.avancer();
+						System.out.println("b");
 					} catch (ExceptionVoiture e) 
 					{
 						// TODO Auto-generated catch block

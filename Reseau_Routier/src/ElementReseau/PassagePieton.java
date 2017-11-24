@@ -18,14 +18,12 @@ public class PassagePieton extends JonctionSimple{
 		if(true)//(feu.getCouleur() == Tricolor.Vert)
 		{
 			System.out.println("La voiture traverse le passage");
-			
+			v.setEtat(segmentsLies.get(1), v.getSens(), v.getVitesse(), 0);
 		}
-		else if(feu.getCouleur() == Tricolor.Rouge){
-			
+		else if(feu.getCouleur() == Tricolor.Rouge){	
 		}
 		
-		else if(feu.getCouleur() == Tricolor.Orange){
-			
+		else if(feu.getCouleur() == Tricolor.Orange){	
 		}
 	}
 	
