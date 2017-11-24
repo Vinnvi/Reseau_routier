@@ -2,7 +2,6 @@ package ElementControle;
 
 public abstract class Feu {
 	Tricolor couleur;
-
 	public Tricolor getCouleur() {
 		return couleur;
 	}

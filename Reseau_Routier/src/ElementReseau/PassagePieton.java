@@ -4,9 +4,9 @@ import ElementControle.Tricolor;
 import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Voiture;
 
-public class PassagePieton extends JonctionSimple{
-	Feu feu;
-	public PassagePieton(Feu chFeu)
+public class PassagePieton<T extends Feu> extends JonctionSimple{
+	T feu;
+	public PassagePieton(T chFeu)
 	{
 		feu = chFeu;
 		feu.setCouleur(Tricolor.Vert);

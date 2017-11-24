@@ -9,7 +9,7 @@ public class CapteurPresence extends Capteur
 	}
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		System.out.println("La voiture "+segment.getState().getId()+"est passé");
 	}
 
 }
