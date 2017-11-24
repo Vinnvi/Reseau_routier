@@ -1,6 +1,7 @@
 package ElementReseau;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Voiture;
@@ -20,5 +21,14 @@ public abstract class Jonction {
 	}
 
 	
-	
+	public String toString(){
+		String str="";
+		Iterator<SegmentRoute> it = segmentsLies.iterator();
+		while(it.hasNext()){
+			str += it.next().getName();
+			str += "\n";
+		}
+		return str;
+		
+	}
 }

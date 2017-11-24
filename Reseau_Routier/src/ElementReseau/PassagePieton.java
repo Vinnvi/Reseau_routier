@@ -15,7 +15,7 @@ public class PassagePieton<T extends Feu> extends JonctionSimple{
 	public void avancer(Voiture v, int distanceRestante) throws ExceptionVoiture{
 		//Check color feu
 		System.out.println("aaa");
-		if(true)//(feu.getCouleur() == Tricolor.Vert)
+		if(feu.getCouleur() == Tricolor.Vert)//(feu.getCouleur() == Tricolor.Vert)
 		{
 			System.out.println("La voiture traverse le passage");
 			v.setEtat(segmentsLies.get(1), v.getSens(), v.getVitesse(), 0);
@@ -26,5 +26,7 @@ public class PassagePieton<T extends Feu> extends JonctionSimple{
 		else if(feu.getCouleur() == Tricolor.Orange){	
 		}
 	}
+	
+	
 	
 }

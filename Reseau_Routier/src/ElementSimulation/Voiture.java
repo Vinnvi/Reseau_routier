@@ -60,8 +60,10 @@ public class Voiture
 						nextSegment = segmentActuel.getJonctionDroite().getSegmentsLies().get(indiceSeg);
 					}while(nextSegment == segmentActuel);
 					
+					
+					
 					//Positionnement dans le prochain segment /!\ non prise en compte du 1 de la jonction pour le moment
-					int distanceAParcourir = vitesseActuelle-distanceRestante; // Distance a Parcourir sur le nouveau segment
+					int distanceAParcourir = vitesseActuelle-(distanceRestante); // Distance a Parcourir sur le nouveau segment
 					this.setSegmentActuel(nextSegment);
 					this.setPositionSegment(distanceAParcourir);
 				}

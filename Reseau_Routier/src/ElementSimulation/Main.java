@@ -4,6 +4,7 @@ import javax.swing.text.Segment;
 
 import ElementControle.FeuTricolore;
 import ElementReseau.Barriere;
+import ElementReseau.Carrefour;
 import ElementReseau.JonctionSimple;
 import ElementReseau.PassagePieton;
 import ElementReseau.SegmentRoute;
@@ -62,16 +63,24 @@ public class Main
 	{
 		Barriere b1 = new Barriere();
 		Barriere b2 = new Barriere();
+		Barriere b3 = new Barriere();
+		Barriere b4 = new Barriere();
+		
 		FeuTricolore f1 = new FeuTricolore();
 		FeuTricolore f2 = new FeuTricolore();
 		PassagePieton p1 = new PassagePieton(f1);
 		PassagePieton p2 = new PassagePieton(f2);
+		Carrefour c = new Carrefour(3, 0);
+		
 		SegmentRoute s1 = new SegmentRoute(20,b1,p1,"autoroute A4");
-		SegmentRoute s2 = new SegmentRoute(10,p1,p2,"N118");
+		SegmentRoute s2 = new SegmentRoute(10,p1,c,"N118");
+		SegmentRoute s3 = new SegmentRoute(15,c,b3,"autoroute A6");
+		SegmentRoute s4 = new SegmentRoute(12,c,b4,"Route 66");
 		
 		Voiture v1 = new Voiture(3,4,s1,true);
 		ArrayList<Voiture> listVoitures = new ArrayList<Voiture>();
 		listVoitures.add(v1);
+		
 		
 		Main simulation = new Main();
 		simulation.lancerSimulation(listVoitures);
