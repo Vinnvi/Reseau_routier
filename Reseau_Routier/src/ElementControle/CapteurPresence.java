@@ -9,6 +9,10 @@ public class CapteurPresence extends Capteur
 		this.segment = chSegment;
 		posSegment = chPos;
 		segment.addCapteur(this, chSens);
+		if(chSens)
+			jonction = segment.getJonctionDroite();
+		else
+			jonction = segment.getJonctionGauche();
 	}
 	@Override
 	public void update() {
@@ -18,6 +22,8 @@ public class CapteurPresence extends Capteur
 	public void update(Voiture v) {
 		System.out.println("La voiture "+v.getId()+" est passé sur le segment "+segment.getName()+" position "+posSegment);
 	}
+	
+	
 	
 
 }

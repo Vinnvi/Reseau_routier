@@ -1,30 +1,68 @@
 package ElementReseau;
 import ElementControle.Feu;
+import ElementControle.FeuBicolore;
+import ElementControle.FeuTricolore;
 import ElementControle.Tricolor;
 import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Voiture;
 
-public class PassagePieton<T extends Feu> extends JonctionSimple{
-	T feu;
-	public PassagePieton(T chFeu)
+public class PassagePieton<F extends Feu> extends JonctionSimple{
+	F feuT;
+	F feuF;
+	
+	@SuppressWarnings("unchecked")
+	public PassagePieton(int typeFeu)
 	{
-		feu = chFeu;
-		feu.setCouleur(Tricolor.Vert);
+		if(typeFeu == 0)
+		{
+			FeuBicolore f1 = new FeuBicolore();
+			FeuBicolore f2 = new FeuBicolore();
+			feuT = (F) f1;
+			feuF = (F) f1;
+			feuT.setCouleur(Tricolor.Vert);
+			feuF.setCouleur(Tricolor.Rouge);
+		}
+		else 
+		{
+			FeuTricolore f1 = new FeuTricolore();
+			FeuTricolore f2 = new FeuTricolore();
+			feuT = (F) f1;
+			feuF = (F) f1;
+			feuT.setCouleur(Tricolor.Vert);
+			feuF.setCouleur(Tricolor.Rouge);
+		}
+	}
+	public PassagePieton(F f1, F f2)
+	{
+		feuT = f1;
+		feuT.setCouleur(Tricolor.Vert);
+		feuF = f2;
+		feuF.setCouleur(Tricolor.Rouge);
 	}
 	@Override
 	public void avancer(Voiture v, int distanceRestante) throws ExceptionVoiture{
-		//Check color feu
-		System.out.println("aaa");
-		if(feu.getCouleur() == Tricolor.Vert)//(feu.getCouleur() == Tricolor.Vert)
+		if(v.getSens())
+			checkColor(feuT,v);
+		else
+			checkColor(feuF,v);	
+	}
+	public void checkColor(F chFeu,Voiture v) throws ExceptionVoiture
+	{
+		if(chFeu.getCouleur() == Tricolor.Vert)//(feu.getCouleur() == Tricolor.Vert)
 		{
-			System.out.println("La voiture traverse le passage");
+			System.out.println("La voiture "+v.getId()+" traverse le passage");
 			v.setEtat(segmentsLies.get(1), v.getSens(), v.getVitesse(), 0);
 		}
-		else if(feu.getCouleur() == Tricolor.Rouge){	
+		else if(chFeu.getCouleur() == Tricolor.Rouge){	
 		}
 		
-		else if(feu.getCouleur() == Tricolor.Orange){	
+		else if(chFeu.getCouleur() == Tricolor.Orange){	
 		}
+	}
+	@Override
+	public void notifPresence(boolean chSens) 
+	{
+		
 	}
 	
 	

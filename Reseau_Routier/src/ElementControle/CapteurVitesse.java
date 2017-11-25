@@ -9,6 +9,7 @@ public class CapteurVitesse extends Capteur
 		this.segment = chSegment;
 		posSegment = chPos;
 		segment.addCapteur(this, chSens);
+		
 	}
 	@Override
 	public void update() {

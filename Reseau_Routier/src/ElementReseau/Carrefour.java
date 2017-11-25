@@ -51,4 +51,10 @@ public class Carrefour<T extends Feu> extends Jonction{
 		}
 		
 	}
+
+	@Override
+	public void notifPresence(boolean chSens) {
+		// TODO Auto-generated method stub
+		
+	}
 }

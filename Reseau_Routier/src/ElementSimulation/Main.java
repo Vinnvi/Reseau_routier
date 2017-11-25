@@ -3,6 +3,7 @@ package ElementSimulation;
 import javax.swing.text.Segment;
 
 import ElementControle.CapteurPresence;
+import ElementControle.FeuBicolore;
 import ElementControle.FeuTricolore;
 import ElementReseau.Barriere;
 import ElementReseau.Carrefour;
@@ -69,10 +70,8 @@ public class Main
 		Barriere b3 = new Barriere();
 		Barriere b4 = new Barriere();
 		
-		FeuTricolore f1 = new FeuTricolore();
-		FeuTricolore f2 = new FeuTricolore();
-		PassagePieton<FeuTricolore> p1 = new PassagePieton(f1);
-		PassagePieton<FeuTricolore> p2 = new PassagePieton(f2);
+		PassagePieton<FeuBicolore> p1 = new PassagePieton(0);
+		PassagePieton<FeuTricolore> p2 = new PassagePieton(1);
 		Carrefour c = new Carrefour(3, 0);
 		
 		SegmentRoute s1 = new SegmentRoute(20,b1,p1,"autoroute A4");
