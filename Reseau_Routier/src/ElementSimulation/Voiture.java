@@ -40,14 +40,15 @@ public class Voiture
 		if(sensActuel){
 			if(positionSegment + vitesseActuelle <= segmentActuel.getLongueur())
 			{
+				segmentActuel.useCapteur(this, positionSegment, positionSegment + vitesseActuelle );
 				positionSegment += vitesseActuelle;
 				System.out.println(this.toString());
 			}
 			else
 			{
 				//Fin du parcours restant du segment	
+				segmentActuel.useCapteur(this, positionSegment,segmentActuel.getLongueur());
 				distanceRestante = positionSegment + vitesseActuelle - segmentActuel.getLongueur();
-				System.out.println(distanceRestante);
 				segmentActuel.getJonctionDroite().avancer(this,distanceRestante);
 				//Selection du prochain segment de route
 				if(segmentActuel.getJonctionDroite().getSegmentsLies().size() <= 1){ // La jonction n'est liée à aucun autre segment

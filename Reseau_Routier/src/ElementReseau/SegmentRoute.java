@@ -9,7 +9,8 @@ import ElementSimulation.Voiture;
 public class SegmentRoute<T extends Jonction,C extends Capteur> {
 	String name;
 	private int longueur;
-	private List<C> capteurs = new ArrayList<C>();
+	private List<C> capteursSensT = new ArrayList<C>();
+	private List<C> capteursSensF = new ArrayList<C>();
 	private T jonctionGauche;
 	private T jonctionDroite;
 	private Voiture state;
@@ -52,10 +53,40 @@ public class SegmentRoute<T extends Jonction,C extends Capteur> {
 	}
 	public void notifyAllCapteurs()
 	{
-		for(C capteur : capteurs){
-			capteur.update();
+		for(C capteurT : capteursSensT){
+			capteurT.update();
+		}
+		for(C capteurF : capteursSensF){
+			capteurF.update();
 		}
 	}
-	
+	public void useCapteur(Voiture v,int posDepart, int posFinal)
+	{
+		if(v.getSens())
+		{
+			for(C capteurT : capteursSensT){
+				if (posDepart < capteurT.getPosSegment() && capteurT.getPosSegment() <= posFinal)
+				{
+					capteurT.update(v);
+				}
+			}
+		}
+		else
+		{
+			for(C capteurT : capteursSensT){
+				if (posDepart < capteurT.getPosSegment() && capteurT.getPosSegment() <= posFinal)
+				{
+					capteurT.update(v);
+				}
+			}
+		}
+	}
+	public void addCapteur(C chCapteur, boolean chSens)
+	{
+		if(chSens = true)
+			capteursSensT.add(chCapteur);
+		else
+			capteursSensF.add(chCapteur);
+	}
 	
 }

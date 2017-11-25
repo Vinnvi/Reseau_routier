@@ -1,15 +1,23 @@
 package ElementControle;
 import ElementReseau.SegmentRoute;
+import ElementSimulation.Voiture;
 
 public class CapteurPresence extends Capteur
 {
-	public CapteurPresence(SegmentRoute chSegment)
+	public CapteurPresence(SegmentRoute chSegment, int chPos, boolean chSens)
 	{
 		this.segment = chSegment;
+		posSegment = chPos;
+		segment.addCapteur(this, chSens);
 	}
 	@Override
 	public void update() {
-		System.out.println("La voiture "+segment.getState().getId()+"est passé");
+		// TODO Auto-generated method stub
+		
 	}
+	public void update(Voiture v) {
+		System.out.println("La voiture "+v.getId()+" est passé sur le segment "+segment.getName()+" position "+posSegment);
+	}
+	
 
 }
