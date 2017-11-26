@@ -11,7 +11,8 @@ public abstract class Jonction {
 	private int idJonction;
 	protected ArrayList <SegmentRoute>  segmentsLies = new ArrayList<>();
 	
-	public abstract void avancer(Voiture v, int distanceRestante) throws ExceptionVoiture;
+	//utile de mettre distance restante?
+	public abstract void avancer(Voiture v) throws ExceptionVoiture;
 	public abstract void notifPresence(boolean chSens);
 	public void addSegmentRoute(SegmentRoute s){
 		segmentsLies.add(s);

@@ -18,7 +18,7 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 			FeuBicolore f1 = new FeuBicolore();
 			FeuBicolore f2 = new FeuBicolore();
 			feuT = (F) f1;
-			feuF = (F) f1;
+			feuF = (F) f2;
 			feuT.setCouleur(Tricolor.Vert);
 			feuF.setCouleur(Tricolor.Rouge);
 		}
@@ -27,7 +27,7 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 			FeuTricolore f1 = new FeuTricolore();
 			FeuTricolore f2 = new FeuTricolore();
 			feuT = (F) f1;
-			feuF = (F) f1;
+			feuF = (F) f2;
 			feuT.setCouleur(Tricolor.Vert);
 			feuF.setCouleur(Tricolor.Rouge);
 		}
@@ -40,20 +40,26 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 		feuF.setCouleur(Tricolor.Rouge);
 	}
 	@Override
-	public void avancer(Voiture v, int distanceRestante) throws ExceptionVoiture{
+	public void avancer(Voiture v) throws ExceptionVoiture{
 		if(v.getSens())
-			checkColor(feuT,v);
+			checkColor(feuT,v,segmentsLies.get(1));
 		else
-			checkColor(feuF,v);	
+			checkColor(feuF,v,segmentsLies.get(0));	
 	}
-	public void checkColor(F chFeu,Voiture v) throws ExceptionVoiture
+	public void checkColor(F chFeu,Voiture v, SegmentRoute s) throws ExceptionVoiture
 	{
-		if(chFeu.getCouleur() == Tricolor.Vert)//(feu.getCouleur() == Tricolor.Vert)
+		if(chFeu.getCouleur().equals(Tricolor.Vert))//(feu.getCouleur() == Tricolor.Vert)
 		{
 			System.out.println("La voiture "+v.getId()+" traverse le passage");
-			v.setEtat(segmentsLies.get(1), v.getSens(), v.getVitesse(), 0);
+			if(v.getSens())
+				v.setEtat(s, v.getSens(), v.getVitesse(), 0);
+			else
+				v.setEtat(s, v.getSens(), v.getVitesse(), s.getLongueur());
 		}
 		else if(chFeu.getCouleur() == Tricolor.Rouge){	
+			System.out.println("La voiture "+v.getId()+" s'arrete au passage");
+			v.setDistRestante(0);
+			
 		}
 		
 		else if(chFeu.getCouleur() == Tricolor.Orange){	
@@ -62,7 +68,27 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 	@Override
 	public void notifPresence(boolean chSens) 
 	{
-		
+		if(chSens)
+			feuVertT();
+		else
+			feuVertF();
+	}
+	public void changerFeux()
+	{
+		if (feuT.getCouleur().equals(Tricolor.Vert)) 
+			feuVertF();
+		else
+			feuVertT();
+	}
+	public void feuVertT()
+	{
+		feuT.setCouleur(Tricolor.Vert);
+		feuF.setCouleur(Tricolor.Rouge);
+	}
+	public void feuVertF()
+	{
+		feuT.setCouleur(Tricolor.Rouge);
+		feuF.setCouleur(Tricolor.Vert);
 	}
 	
 	

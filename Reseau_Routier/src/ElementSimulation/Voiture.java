@@ -3,13 +3,14 @@ import ElementReseau.SegmentRoute;
 
 public class Voiture 
 {
-	int id;
-	int longueur;
-	int vitMax;
-	SegmentRoute segmentActuel;
-	int positionSegment;
-	boolean sensActuel;
-	int vitesseActuelle;
+	private int id;
+	private int longueur;
+	private int vitMax;
+	private SegmentRoute segmentActuel;
+	private int positionSegment;
+	private boolean sensActuel;
+	private int vitesseActuelle;
+	private int distanceRestante = 0;
 	private static int identifiant = 0;
 	
 	public Voiture(int taille,int vitesseMax,SegmentRoute chSegment,boolean chSens){
@@ -36,70 +37,60 @@ public class Voiture
 	}
 	
 	public void avancer() throws ExceptionVoiture{
-		int distanceRestante = vitesseActuelle;
-		if(sensActuel){
-			if(positionSegment + vitesseActuelle <= segmentActuel.getLongueur())
+		distanceRestante = vitesseActuelle;
+		do{
+			if(sensActuel)
 			{
-				segmentActuel.useCapteur(this, positionSegment, positionSegment + vitesseActuelle );
-				positionSegment += vitesseActuelle;
-				System.out.println(this.toString());
-			}
-			else
-			{
-				//Fin du parcours restant du segment	
-				segmentActuel.useCapteur(this, positionSegment,segmentActuel.getLongueur());
-				distanceRestante = positionSegment + vitesseActuelle - segmentActuel.getLongueur();
-				segmentActuel.getJonctionDroite().avancer(this,distanceRestante);
-				//Selection du prochain segment de route
-				if(segmentActuel.getJonctionDroite().getSegmentsLies().size() <= 1){ // La jonction n'est liée à aucun autre segment
-					System.out.println("Fin de route : la voiture a atteint le bout de la route");
+				if(positionSegment + vitesseActuelle <= segmentActuel.getLongueur())
+				{
+					segmentActuel.useCapteur(this, positionSegment, positionSegment + vitesseActuelle );
+					positionSegment += vitesseActuelle;
+					distanceRestante = 0;
 				}
-				else{
-				SegmentRoute nextSegment=null;
-					do{
-						int indiceSeg = (int) (Math.random() * (segmentActuel.getJonctionDroite().getSegmentsLies().size()-1) );
-						nextSegment = segmentActuel.getJonctionDroite().getSegmentsLies().get(indiceSeg);
-					}while(nextSegment == segmentActuel);
-					
-					
-					
-					//Positionnement dans le prochain segment /!\ non prise en compte du 1 de la jonction pour le moment
-					int distanceAParcourir = vitesseActuelle-(distanceRestante); // Distance a Parcourir sur le nouveau segment
-					this.setSegmentActuel(nextSegment);
-					this.setPositionSegment(distanceAParcourir);
+				else
+				{
+					//Fin du parcours restant du segment	
+					segmentActuel.useCapteur(this, positionSegment,segmentActuel.getLongueur());
+					distanceRestante = positionSegment + vitesseActuelle - segmentActuel.getLongueur();
+					segmentActuel.getJonctionDroite().avancer(this);
+					if(vitesseActuelle != 0 && distanceRestante != 0)
+					{
+						distanceRestante -= 1;
+						/*
+						if(segmentActuel.getJonctionDroite().getSegmentsLies().size() <= 1){ // La jonction n'est liée à aucun autre segment
+							vitesseActuelle = 0;
+							System.out.println("Fin de route : la voiture a atteint le bout de la route");
+						}
+						}*/
+					}
 				}
 			}
-		}
-		else{
-			if(positionSegment - vitesseActuelle >= 0)
-			{
-				positionSegment -= vitesseActuelle;
-				System.out.println(this.toString());
-			}
-			else
-			{
-				//Fin du parcours restant du segment				
-				distanceRestante = vitesseActuelle - positionSegment;
-				segmentActuel.getJonctionGauche().avancer(this,distanceRestante);
-				
-				//Selection du prochain segment de route
-				if(segmentActuel.getJonctionGauche().getSegmentsLies().size() <= 1){ // La jonction n'est liée à aucun autre segment
-					System.out.println("Fin de route : la voiture a atteint le bout de la route");
+			else{
+				if(positionSegment - vitesseActuelle >= 0)
+				{
+					segmentActuel.useCapteur(this, positionSegment, positionSegment - vitesseActuelle );
+					positionSegment -= vitesseActuelle;
+					distanceRestante = 0;
 				}
-				else{
-					SegmentRoute nextSegment=null;
-					do{
-						int indiceSeg = (int) (Math.random() * (segmentActuel.getJonctionGauche().getSegmentsLies().size()) );
-						nextSegment = segmentActuel.getJonctionGauche().getSegmentsLies().get(indiceSeg);
-					}while(nextSegment == segmentActuel);
-					
-					
-					//Positionnement dans le prochain segment /!\ non prise en compte du 1 de la jonction pour le moment
-					int distanceAParcourir = vitesseActuelle-distanceRestante; // Distance a Parcourir sur le nouveau segment
+				else
+				{
+					//Fin du parcours restant du segment		
+					segmentActuel.useCapteur(this, positionSegment,0);
+					distanceRestante = vitesseActuelle - positionSegment;
+					segmentActuel.getJonctionGauche().avancer(this);
+					if(vitesseActuelle != 0 && distanceRestante != 0)
+					{
+						distanceRestante -= 1;
+						/*
+						if(segmentActuel.getJonctionGauche().getSegmentsLies().size() <= 1){ // La jonction n'est liée à aucun autre segment
+							System.out.println("Fin de route : la voiture a atteint le bout de la route");
+						}
+						}*/
+					}
 				}
-				
 			}
-		}
+		}while(distanceRestante > 0);
+		System.out.println(this.toString());
 		
 	}
 
@@ -124,6 +115,25 @@ public class Voiture
 	{
 		return vitesseActuelle;
 	}
+	public void setVitesseActuelle(int chVit)
+	{
+		vitesseActuelle = chVit;
+	}
+	public int getDistRestante()
+	{
+		return distanceRestante;
+	}
+	public void setDistRestante(int chDistRestante)
+	{
+		distanceRestante = chDistRestante;
+	}
+	public void arretVoiture()
+	{
+		vitesseActuelle = 0;
+		distanceRestante = 0;
+	}
+	
+	
 	public String toString(){
 		return "La voiture "+id+" est a la position "+positionSegment+" du segment "+segmentActuel.getName();
 	}

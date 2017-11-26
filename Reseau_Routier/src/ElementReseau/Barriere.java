@@ -9,7 +9,7 @@ public class Barriere extends Jonction{
 	public Barriere()
 	{
 	}
-	public void avancer(Voiture v, int distanceRestante) throws ExceptionVoiture{
+	public void avancer(Voiture v) throws ExceptionVoiture{
 		System.out.println("La voiture "+v.getId()+" a rencontré une barrière");
 		v.setEtat(v.getSegmentActuel(),v.getSens(),0,longueur);
 	}

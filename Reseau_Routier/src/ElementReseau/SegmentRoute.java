@@ -74,7 +74,7 @@ public class SegmentRoute<T extends Jonction,C extends Capteur> {
 		else
 		{
 			for(C capteurT : capteursSensT){
-				if (posDepart < capteurT.getPosSegment() && capteurT.getPosSegment() <= posFinal)
+				if (posDepart > capteurT.getPosSegment() && capteurT.getPosSegment() >= posFinal)
 				{
 					capteurT.update(v);
 				}

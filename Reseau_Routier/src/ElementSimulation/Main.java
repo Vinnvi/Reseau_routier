@@ -12,7 +12,9 @@ import ElementReseau.JonctionSimple;
 import ElementReseau.PassagePieton;
 import ElementReseau.SegmentRoute;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -36,15 +38,11 @@ public class Main
         @Override
 		public void run() 
 		{
-			while(nbRepetitions > 0)
-			{	
-				System.out.println("Intervalle numéro "+nbRepetitions);
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+        	Scanner scan = new Scanner(System.in);
+        	String reponse = "y";
+			do
+			{
+				System.out.println("Intervalle numéro "+nbRepetitions+" ------------");
 				for(Voiture a : listVoitures)
 				{
 					try {
@@ -57,8 +55,10 @@ public class Main
 					}
 				}
 				nbRepetitions++;
-			}
-			System.out.println("Termine!");
+				System.out.println("Intervalle suivant? tapez 'y' pour oui ou autre pour non");
+				reponse = scan.next();
+		    }while (reponse.equals("y"));
+			System.out.println("Termine!" + reponse);
 			t.cancel();
 		}
     }
