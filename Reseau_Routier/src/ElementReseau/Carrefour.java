@@ -7,6 +7,7 @@ import ElementControle.FeuBicolore;
 import ElementControle.FeuTricolore;
 import ElementControle.Tricolor;
 import ElementSimulation.ExceptionVoiture;
+import ElementSimulation.Main;
 import ElementSimulation.Voiture;
 
 public class Carrefour<T extends Feu> extends Jonction{
@@ -16,12 +17,16 @@ public class Carrefour<T extends Feu> extends Jonction{
 	public Carrefour(int nbRoutesConnectes,int typeFeu){
 		for(int i=0;i<nbRoutesConnectes;i++){
 			if(typeFeu == 1){
-				feux.add((T) new FeuBicolore());
-				feux.get(i).setCouleur(Tricolor.Rouge);
+				T f = (T)new FeuBicolore();
+				feux.add(f);
+				f.setCouleur(Tricolor.Rouge);
+				Main.addFeu(feux.get(i));
 			}
 			else{
-				feux.add((T) new FeuTricolore());
-				feux.get(i).setCouleur(Tricolor.Rouge);
+				T f = (T)new FeuTricolore();
+				feux.add(f);
+				f.setCouleur(Tricolor.Rouge);
+				Main.addFeu(feux.get(i));
 			}
 		}
 		int nbAlea = (int) (Math.random() * (nbRoutesConnectes));

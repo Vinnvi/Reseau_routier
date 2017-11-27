@@ -42,9 +42,9 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 	@Override
 	public void avancer(Voiture v) throws ExceptionVoiture{
 		if(v.getSens())
-			checkColor(feuT,v,segmentsLies.get(1));
+			checkColor(feuT,v,segmentsLies.get(0));
 		else
-			checkColor(feuF,v,segmentsLies.get(0));	
+			checkColor(feuF,v,segmentsLies.get(1));	
 	}
 	public void checkColor(F chFeu,Voiture v, SegmentRoute s) throws ExceptionVoiture
 	{

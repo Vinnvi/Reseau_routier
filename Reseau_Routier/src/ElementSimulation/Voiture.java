@@ -41,17 +41,17 @@ public class Voiture
 		do{
 			if(sensActuel)
 			{
-				if(positionSegment + vitesseActuelle <= segmentActuel.getLongueur())
+				if(positionSegment + distanceRestante <= segmentActuel.getLongueur())
 				{
-					segmentActuel.useCapteur(this, positionSegment, positionSegment + vitesseActuelle );
-					positionSegment += vitesseActuelle;
+					segmentActuel.useCapteur(this, positionSegment, positionSegment + distanceRestante );
+					positionSegment += distanceRestante;
 					distanceRestante = 0;
 				}
 				else
 				{
 					//Fin du parcours restant du segment	
 					segmentActuel.useCapteur(this, positionSegment,segmentActuel.getLongueur());
-					distanceRestante = positionSegment + vitesseActuelle - segmentActuel.getLongueur();
+					distanceRestante = positionSegment + distanceRestante - segmentActuel.getLongueur();
 					segmentActuel.getJonctionDroite().avancer(this);
 					if(vitesseActuelle != 0 && distanceRestante != 0)
 					{

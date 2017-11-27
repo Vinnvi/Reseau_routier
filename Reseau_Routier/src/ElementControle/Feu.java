@@ -5,9 +5,13 @@ public abstract class Feu {
 	public Tricolor getCouleur() {
 		return couleur;
 	}
-
 	public void setCouleur(Tricolor couleur) {
 		this.couleur = couleur;
 	}
+	public void switchColor()
+	{
+		couleur = (couleur.equals(Tricolor.Vert) ? Tricolor.Rouge : Tricolor.Vert);
+	}
+	
 	
 }

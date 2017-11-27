@@ -1,18 +1,13 @@
 package ElementSimulation;
 // On met 1 semaphore max par extremite
-import javax.swing.text.Segment;
-
 import ElementControle.CapteurPresence;
+import ElementControle.Feu;
 import ElementControle.FeuBicolore;
 import ElementControle.FeuTricolore;
 import ElementReseau.Barriere;
 import ElementReseau.Carrefour;
-import ElementReseau.Jonction;
-import ElementReseau.JonctionSimple;
 import ElementReseau.PassagePieton;
 import ElementReseau.SegmentRoute;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
@@ -20,13 +15,24 @@ import java.util.TimerTask;
 
 public class Main 
 {
-	Timer t;
-	
+	private Timer t;
+	private static ArrayList<Feu> listFeux;
 	public void lancerSimulation(ArrayList<Voiture> list) 
 	{
 		t = new Timer();
 		t.schedule(new Intervalle(list), 0, 10000);//action / delai / periode
     }
+	public static void addFeu(Feu f)
+	{
+		listFeux.add(f);
+	}
+	public static void updateFeux()
+	{
+		for(Feu f : listFeux)
+		{
+			f.switchColor();
+		}
+	}
 	class Intervalle extends TimerTask 
 	{
 		int nbRepetitions = 1;
@@ -47,7 +53,6 @@ public class Main
 				{
 					try {
 						a.avancer();
-						System.out.println("b");
 					} catch (ExceptionVoiture e) 
 					{
 						// TODO Auto-generated catch block
@@ -57,6 +62,7 @@ public class Main
 				nbRepetitions++;
 				System.out.println("Intervalle suivant? tapez 'y' pour oui ou autre pour non");
 				reponse = scan.next();
+				updateFeux();
 		    }while (reponse.equals("y"));
 			System.out.println("Termine!" + reponse);
 			t.cancel();
@@ -65,6 +71,7 @@ public class Main
 	
 	public static void main(String[] args)
 	{
+		listFeux = new ArrayList<Feu>();
 		Barriere b1 = new Barriere();
 		Barriere b2 = new Barriere();
 		Barriere b3 = new Barriere();
@@ -84,7 +91,6 @@ public class Main
 		Voiture v1 = new Voiture(3,4,s1,true);
 		ArrayList<Voiture> listVoitures = new ArrayList<Voiture>();
 		listVoitures.add(v1);
-		
 		
 		Main simulation = new Main();
 		simulation.lancerSimulation(listVoitures);
