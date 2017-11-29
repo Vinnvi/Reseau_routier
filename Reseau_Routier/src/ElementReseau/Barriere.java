@@ -10,11 +10,11 @@ public class Barriere extends Jonction{
 	{
 	}
 	public void avancer(Voiture v) throws ExceptionVoiture{
-		System.out.println("La voiture "+v.getId()+" a rencontré une barrière");
+		System.out.println("La voiture "+v.getId()+" a rencontre une barriere");
 		v.setEtat(v.getSegmentActuel(),v.getSens(),0,longueur);
 	}
 	@Override
-	public void notifPresence(boolean chSens) {
+	public void notifPresence(boolean chSens,Voiture v) {
 		// TODO Auto-generated method stub
 		
 	}

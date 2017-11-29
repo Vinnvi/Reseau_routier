@@ -1,6 +1,7 @@
 package ElementReseau;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import ElementControle.Feu;
 import ElementControle.FeuBicolore;
@@ -94,9 +95,14 @@ public class Carrefour<T extends Feu> extends Jonction{
 		}
 	}
 	@Override
-	public void notifPresence(boolean chSens) 
+	public void notifPresence(boolean chSens,Voiture v) 
 	{
-		// TODO Auto-generated method stub
+		Iterator <T> it = feux.iterator();
+		while(it.hasNext()) {
+			/*if(it.next() == v.getSegmentActuel()) {
+				
+			}*/
+		}
 		
 	}
 }

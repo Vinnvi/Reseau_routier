@@ -49,7 +49,7 @@ public class Main
         	String reponse = "y";
 			do
 			{
-				System.out.println("Intervalle numéro "+nbRepetitions+" ------------");
+				System.out.println("Intervalle numero "+nbRepetitions+" ------------");
 				for(Voiture a : listVoitures)
 				{
 					try {
@@ -64,6 +64,8 @@ public class Main
 				System.out.println("Intervalle suivant? tapez 'y' pour oui ou autre pour non");
 				reponse = scan.next();
 				updateFeux();
+						
+				
 		    }while (reponse.equals("y"));
 			System.out.println("Termine!" + reponse);
 			t.cancel();

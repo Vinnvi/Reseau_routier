@@ -13,7 +13,7 @@ public abstract class Jonction {
 	
 	//utile de mettre distance restante?
 	public abstract void avancer(Voiture v) throws ExceptionVoiture;
-	public abstract void notifPresence(boolean chSens);
+	public abstract void notifPresence(boolean chSens, Voiture v);
 	public void addSegmentRoute(SegmentRoute s){
 		segmentsLies.add(s);
 	}

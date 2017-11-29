@@ -81,7 +81,7 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 		}
 	}
 	@Override
-	public void notifPresence(boolean chSens) 
+	public void notifPresence(boolean chSens,Voiture v) 
 	{
 		if(chSens)
 			feuVertT();
