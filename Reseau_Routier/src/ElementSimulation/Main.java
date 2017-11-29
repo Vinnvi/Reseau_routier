@@ -1,6 +1,7 @@
 package ElementSimulation;
 // On met 1 semaphore max par extremite
 import ElementControle.CapteurPresence;
+import ElementControle.CapteurVitesse;
 import ElementControle.Feu;
 import ElementControle.FeuBicolore;
 import ElementControle.FeuTricolore;
@@ -72,23 +73,35 @@ public class Main
 	public static void main(String[] args)
 	{
 		listFeux = new ArrayList<Feu>();
-		Barriere b1 = new Barriere();
-		Barriere b2 = new Barriere();
-		Barriere b3 = new Barriere();
-		Barriere b4 = new Barriere();
+		Barriere B1 = new Barriere();
+		Barriere B2 = new Barriere();
+		Barriere B3 = new Barriere();
 		
-		PassagePieton<FeuBicolore> p1 = new PassagePieton(0);
-		PassagePieton<FeuTricolore> p2 = new PassagePieton(1);
-		Carrefour c = new Carrefour(3, 0);
+		PassagePieton<FeuBicolore> P1 = new PassagePieton(0);
+		PassagePieton<FeuTricolore> P2 = new PassagePieton(1);
+		Carrefour C1 = new Carrefour(3, 0);
+		Carrefour C2 = new Carrefour(4, 0);
 		
-		SegmentRoute s1 = new SegmentRoute(20,b1,p1,"autoroute A4");
-		SegmentRoute s2 = new SegmentRoute(10,p1,c,"N118");
-		SegmentRoute s3 = new SegmentRoute(15,c,b3,"autoroute A6");
-		SegmentRoute s4 = new SegmentRoute(12,c,b4,"Route 66");
-		
-		CapteurPresence capt1 = new CapteurPresence(s1, 9, true);
-		
-		Voiture v1 = new Voiture(3,4,s1,true);
+		SegmentRoute R1 = new SegmentRoute(60,B1,C1,"R1");
+		SegmentRoute R2 = new SegmentRoute(100,C1,P1,"R2");
+		SegmentRoute R3 = new SegmentRoute(100,C2,P1,"R3");
+		SegmentRoute R4 = new SegmentRoute(45,C2,B3,"R4");
+		SegmentRoute R5 = new SegmentRoute(60,C2,B2,"R5");
+		SegmentRoute R6 = new SegmentRoute(45,P2,C2,"R6");
+		SegmentRoute R7 = new SegmentRoute(35,C1,P2,"R7");
+		P1.addSegmentRoute(R2);
+		P1.addSegmentRoute(R3);
+		P2.addSegmentRoute(R7);
+		P2.addSegmentRoute(R6);
+		C1.addSeg(R1,R2,R3);
+		C2.addSeg(R3,R4,R5,R6);
+		CapteurPresence captP1 = new CapteurPresence(R1, 42, true);
+		CapteurPresence captP2 = new CapteurPresence(R6, 30, true);
+		CapteurPresence captP3 = new CapteurPresence(R6, 20, false);
+		CapteurVitesse captV1 = new CapteurVitesse(R1, 52, true);
+		CapteurVitesse captV2 = new CapteurVitesse(R2, 74, false);
+		CapteurVitesse captV3 = new CapteurVitesse(R3, 78, false);
+		Voiture v1 = new Voiture(2,40,R1,0,true);
 		ArrayList<Voiture> listVoitures = new ArrayList<Voiture>();
 		listVoitures.add(v1);
 		

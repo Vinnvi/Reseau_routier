@@ -32,7 +32,28 @@ public class Carrefour<T extends Feu> extends Jonction{
 		int nbAlea = (int) (Math.random() * (nbRoutesConnectes));
 		feux.get(nbAlea).setCouleur(Tricolor.Rouge);
 	}
-
+	public Carrefour(int typeFeu,SegmentRoute... routes){
+		for(int i=0;i<routes.length;i++){
+			if(typeFeu == 1){
+				T f = (T)new FeuBicolore();
+				feux.add(f);
+				f.setCouleur(Tricolor.Rouge);
+				Main.addFeu(feux.get(i));
+			}
+			else{
+				T f = (T)new FeuTricolore();
+				feux.add(f);
+				f.setCouleur(Tricolor.Rouge);
+				Main.addFeu(feux.get(i));
+			}
+		}
+		int nbAlea = (int) (Math.random() * (routes.length));
+		feux.get(nbAlea).setCouleur(Tricolor.Rouge);
+		for(int i=0;i<routes.length;i++){
+			segmentsLies.add(routes[i]);
+		}
+	}
+	
 	@Override
 	public void avancer(Voiture v) throws ExceptionVoiture {
 		SegmentRoute segmentActuel = v.getSegmentActuel();
@@ -67,7 +88,11 @@ public class Carrefour<T extends Feu> extends Jonction{
 		}
 
 	}
-
+	public void addSeg(SegmentRoute... routes){
+		for(int i=0;i<routes.length;i++){
+			segmentsLies.add(routes[i]);
+		}
+	}
 	@Override
 	public void notifPresence(boolean chSens) 
 	{

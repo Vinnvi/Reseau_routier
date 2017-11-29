@@ -20,7 +20,7 @@ public class CapteurPresence extends Capteur
 		
 	}
 	public void update(Voiture v) {
-		System.out.println("La voiture "+v.getId()+" est passé sur le segment "+segment.getName()+" position "+posSegment);
+		System.out.println("Capteur : La voiture "+v.getId()+" est passé sur le segment "+segment.getName()+" position "+posSegment);
 	}
 	
 	

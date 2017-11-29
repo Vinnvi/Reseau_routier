@@ -32,12 +32,27 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 			feuF.setCouleur(Tricolor.Rouge);
 		}
 	}
-	public PassagePieton(F f1, F f2)
+	public PassagePieton(SegmentRoute T1, SegmentRoute T2, int typeFeu)
 	{
-		feuT = f1;
-		feuT.setCouleur(Tricolor.Vert);
-		feuF = f2;
-		feuF.setCouleur(Tricolor.Rouge);
+		segmentsLies.add(T1);segmentsLies.add(T2);
+		if(typeFeu == 0)
+		{
+			FeuBicolore f1 = new FeuBicolore();
+			FeuBicolore f2 = new FeuBicolore();
+			feuT = (F) f1;
+			feuF = (F) f2;
+			feuT.setCouleur(Tricolor.Vert);
+			feuF.setCouleur(Tricolor.Rouge);
+		}
+		else 
+		{
+			FeuTricolore f1 = new FeuTricolore();
+			FeuTricolore f2 = new FeuTricolore();
+			feuT = (F) f1;
+			feuF = (F) f2;
+			feuT.setCouleur(Tricolor.Vert);
+			feuF.setCouleur(Tricolor.Rouge);
+		}
 	}
 	@Override
 	public void avancer(Voiture v) throws ExceptionVoiture{
@@ -89,6 +104,10 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 	{
 		feuT.setCouleur(Tricolor.Rouge);
 		feuF.setCouleur(Tricolor.Vert);
+	}
+	public void addSeg(SegmentRoute seg)
+	{
+		segmentsLies.add(seg);
 	}
 	
 	
