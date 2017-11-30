@@ -74,7 +74,7 @@ public class Carrefour<T extends Feu> extends Jonction{
 		if(feux.get(i).getCouleur() == Tricolor.Vert)
 		{
 			System.out.println("La voiture traverse le passage du carrefour");
-			v.setEtat(nextSegment, v.getSens(), v.getVitesse(),v.getSens() ? 0 : nextSegment.getLongueur());
+			v.setEtat(nextSegment, v.getSens(),v.getSens() ? 0 : nextSegment.getLongueur());
 		}
 		else if(feux.get(i).getCouleur() == Tricolor.Rouge){	
 			System.out.println("La voiture "+v.getId()+" s'arrete devant le carrefour");
@@ -84,7 +84,8 @@ public class Carrefour<T extends Feu> extends Jonction{
 		{	
 			System.out.println("La voiture traverse le passage du carrefour au feu orange");
 			v.setDistRestante(v.getDistRestante() > 1 ? (int)v.getDistRestante()/2 : 1);
-			v.setEtat(nextSegment, v.getSens(), v.getVitesse(),v.getSens() ? 0 : nextSegment.getLongueur());
+			v.setEtat(nextSegment, v.getSens(),v.getSens() ? 0 : nextSegment.getLongueur());
+			v.setVitesseActuelle(v.getVitesse()/2);
 		}
 
 	}

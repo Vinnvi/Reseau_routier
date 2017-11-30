@@ -84,13 +84,13 @@ public class Main
 		Carrefour C1 = new Carrefour(3, 0);
 		Carrefour C2 = new Carrefour(4, 0);
 		
-		SegmentRoute R1 = new SegmentRoute(60,B1,C1,"R1");
-		SegmentRoute R2 = new SegmentRoute(100,C1,P1,"R2");
-		SegmentRoute R3 = new SegmentRoute(100,P1,C2,"R3");
-		SegmentRoute R4 = new SegmentRoute(45,C2,B3,"R4");
-		SegmentRoute R5 = new SegmentRoute(60,C2,B2,"R5");
-		SegmentRoute R6 = new SegmentRoute(45,P2,C2,"R6");
-		SegmentRoute R7 = new SegmentRoute(35,C1,P2,"R7");
+		SegmentRoute R1 = new SegmentRoute(60,B1,C1,70,"R1");
+		SegmentRoute R2 = new SegmentRoute(100,C1,P1,50,"R2");
+		SegmentRoute R3 = new SegmentRoute(100,P1,C2,60,"R3");
+		SegmentRoute R4 = new SegmentRoute(45,C2,B3,30,"R4");
+		SegmentRoute R5 = new SegmentRoute(60,C2,B2,40,"R5");
+		SegmentRoute R6 = new SegmentRoute(45,P2,C2,30,"R6");
+		SegmentRoute R7 = new SegmentRoute(35,C1,P2,30,"R7");
 		P1.addSegmentRoute(R2);
 		P1.addSegmentRoute(R3);
 		P2.addSegmentRoute(R7);
@@ -103,7 +103,7 @@ public class Main
 		CapteurVitesse captV1 = new CapteurVitesse(R1, 52, true);
 		CapteurVitesse captV2 = new CapteurVitesse(R2, 74, false);
 		CapteurVitesse captV3 = new CapteurVitesse(R3, 78, false);
-		Voiture v1 = new Voiture(2,40,R1,0,true);
+		Voiture v1 = new Voiture(2,65,R1,0,true);
 		ArrayList<Voiture> listVoitures = new ArrayList<Voiture>();
 		listVoitures.add(v1);
 		

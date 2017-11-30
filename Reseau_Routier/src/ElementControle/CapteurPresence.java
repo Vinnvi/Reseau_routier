@@ -1,4 +1,5 @@
 package ElementControle;
+import ElementReseau.Jonction;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 

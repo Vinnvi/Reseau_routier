@@ -2,6 +2,7 @@ package ElementReseau;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import ElementControle.Capteur;
 import ElementSimulation.Voiture;
@@ -9,17 +10,19 @@ import ElementSimulation.Voiture;
 public class SegmentRoute<T extends Jonction,C extends Capteur> {
 	String name;
 	private int longueur;
+	private int limitVitesse;
 	private List<C> capteursSensT = new ArrayList<C>();
 	private List<C> capteursSensF = new ArrayList<C>();
 	private T jonctionGauche;
 	private T jonctionDroite;
 	private Voiture state;
 	
-	public SegmentRoute(int maLongeur,T g,T d, String nom){
+	public SegmentRoute(int maLongeur,T g,T d,int chLimit,String nom){
 		longueur = maLongeur;
 		name = nom;
 		setJonctionGauche(g);
 		setJonctionDroite(d);
+		limitVitesse = chLimit;
 	}
 	public void setJonctionGauche(T j){
 		jonctionGauche = j;
@@ -51,6 +54,10 @@ public class SegmentRoute<T extends Jonction,C extends Capteur> {
 		state = chState;
 		notifyAllCapteurs();
 	}
+	public int getLimit()
+	{
+		return limitVitesse;
+	}
 	public void notifyAllCapteurs()
 	{
 		for(C capteurT : capteursSensT){
@@ -73,10 +80,10 @@ public class SegmentRoute<T extends Jonction,C extends Capteur> {
 		}
 		else
 		{
-			for(C capteurT : capteursSensT){
-				if (posDepart > capteurT.getPosSegment() && capteurT.getPosSegment() >= posFinal)
+			for(C capteurF : capteursSensF){
+				if (posDepart < capteurF.getPosSegment() && capteurF.getPosSegment() <= posFinal)
 				{
-					capteurT.update(v);
+					capteurF.update(v);
 				}
 			}
 		}

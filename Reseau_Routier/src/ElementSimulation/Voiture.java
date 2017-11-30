@@ -16,25 +16,18 @@ public class Voiture
 	public Voiture(int taille,int vitesseMax,SegmentRoute chSegment,int chPosSeg,boolean chSens){
 		longueur = taille;
 		vitMax = vitesseMax;
-		vitesseActuelle = vitMax;
 		segmentActuel = chSegment;
+		vitesseActuelle = getVitLegale();
 		sensActuel = chSens;
 		id = identifiant;
 		positionSegment = chPosSeg;
 		identifiant++;
 	}
-	
-	public void setEtat(SegmentRoute s,boolean sens,int chVitesse,int chPos) throws ExceptionVoiture{
-		if(chVitesse > vitMax){
-			throw new ExceptionVoiture("La vitesse de la voiture est trop rapide");
-		}
-		else
-		{
-			segmentActuel = s;
-			sensActuel = sens;
-			vitesseActuelle = chVitesse;
-			positionSegment = chPos;
-		}
+	public void setEtat(SegmentRoute s,boolean sens,int chPos) throws ExceptionVoiture{
+		segmentActuel = s;
+		sensActuel = sens;
+		vitesseActuelle = getVitLegale();;
+		positionSegment = chPos;
 	}
 	
 	public void avancer() throws ExceptionVoiture{
@@ -110,9 +103,13 @@ public class Voiture
 		vitesseActuelle = 0;
 		distanceRestante = 0;
 	}
+	public int getVitLegale()
+	{
+		return segmentActuel.getLimit() > vitMax ? vitMax : segmentActuel.getLimit();
+	}
 	
 	
 	public String toString(){
-		return "La voiture "+id+" est a la position "+positionSegment+" du segment "+segmentActuel.getName();
+		return "La voiture "+id+"("+vitesseActuelle+")"+" est a la position "+positionSegment+" du segment "+segmentActuel.getName()+"("+segmentActuel.getLimit()+")";
 	}
 }
