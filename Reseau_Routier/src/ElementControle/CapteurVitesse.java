@@ -9,6 +9,10 @@ public class CapteurVitesse extends Capteur
 		this.segment = chSegment;
 		posSegment = chPos;
 		segment.addCapteur(this, chSens);
+		if(chSens)
+			jonction = segment.getJonctionDroite();
+		else
+			jonction = segment.getJonctionGauche();
 		
 	}
 	@Override
@@ -17,7 +21,7 @@ public class CapteurVitesse extends Capteur
 	}
 	@Override
 	public void update(Voiture v) {
-		// TODO Auto-generated method stub
+		System.out.println("La voiture roule a " + (v.getVitesse()));
 		
 	}
 }

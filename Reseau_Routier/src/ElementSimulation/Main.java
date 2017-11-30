@@ -5,6 +5,7 @@ import ElementControle.CapteurVitesse;
 import ElementControle.Feu;
 import ElementControle.FeuBicolore;
 import ElementControle.FeuTricolore;
+import ElementControle.PanneauLimitation;
 import ElementReseau.Barriere;
 import ElementReseau.Carrefour;
 import ElementReseau.PassagePieton;
@@ -103,6 +104,9 @@ public class Main
 		CapteurVitesse captV1 = new CapteurVitesse(R1, 52, true);
 		CapteurVitesse captV2 = new CapteurVitesse(R2, 74, false);
 		CapteurVitesse captV3 = new CapteurVitesse(R3, 78, false);
+		
+		PanneauLimitation panneau1 = new PanneauLimitation(R2,false,30);
+		
 		Voiture v1 = new Voiture(2,65,R1,0,true);
 		ArrayList<Voiture> listVoitures = new ArrayList<Voiture>();
 		listVoitures.add(v1);

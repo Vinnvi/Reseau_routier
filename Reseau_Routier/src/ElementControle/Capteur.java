@@ -3,7 +3,7 @@ import ElementReseau.Jonction;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 
-public abstract class Capteur<J extends Jonction>
+public abstract class Capteur<J extends Jonction> extends Semaphore
 {
 	protected SegmentRoute segment;
 	protected int posSegment;

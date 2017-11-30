@@ -1,6 +1,6 @@
 package ElementControle;
 
-public abstract class Feu {
+public abstract class Feu extends Semaphore{
 	Tricolor couleur;
 	public Tricolor getCouleur() {
 		return couleur;

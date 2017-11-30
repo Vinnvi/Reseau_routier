@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Random;
 
 import ElementControle.Capteur;
+import ElementControle.Semaphore;
 import ElementSimulation.Voiture;
 
-public class SegmentRoute<T extends Jonction,C extends Capteur> {
+public class SegmentRoute<T extends Jonction,C extends Capteur,S extends Semaphore> {
 	String name;
 	private int longueur;
 	private int limitVitesse;
@@ -16,6 +17,8 @@ public class SegmentRoute<T extends Jonction,C extends Capteur> {
 	private T jonctionGauche;
 	private T jonctionDroite;
 	private Voiture state;
+	private S semaphoreTrue;
+	private S semaphoreFalse;
 	
 	public SegmentRoute(int maLongeur,T g,T d,int chLimit,String nom){
 		longueur = maLongeur;
@@ -69,6 +72,7 @@ public class SegmentRoute<T extends Jonction,C extends Capteur> {
 	}
 	public void useCapteur(Voiture v,int posDepart, int posFinal)
 	{
+		
 		if(v.getSens())
 		{
 			for(C capteurT : capteursSensT){
@@ -96,4 +100,22 @@ public class SegmentRoute<T extends Jonction,C extends Capteur> {
 			capteursSensF.add(chCapteur);
 	}
 	
+	public void addSemaphore(S semaphore, boolean chSens)
+	{
+		if(chSens = true)
+			semaphoreTrue = semaphore;
+		else
+			semaphoreFalse = semaphore;
+	}	
+	
+	public void useSemaphore(Voiture v){
+		if(v.getSens()){
+			if(semaphoreTrue != null)
+				semaphoreTrue.update();
+		}
+		else{
+			if(semaphoreFalse != null)
+				semaphoreFalse.update();
+		}
+	}
 }
