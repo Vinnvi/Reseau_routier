@@ -51,6 +51,7 @@ public class Voiture
 					//Fin du parcours restant du segment	
 					segmentActuel.useCapteur(this, positionSegment,segmentActuel.getLongueur());
 					distanceRestante = positionSegment + distanceRestante - segmentActuel.getLongueur();
+					positionSegment = segmentActuel.getLongueur();
 					if(sensActuel)
 						segmentActuel.getJonctionDroite().avancer(this);
 					else

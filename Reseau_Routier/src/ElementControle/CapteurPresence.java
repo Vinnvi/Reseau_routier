@@ -17,7 +17,6 @@ public class CapteurPresence extends Capteur
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
 	}
 	public void update(Voiture v) {
 		System.out.println("Capteur : La voiture "+v.getId()+" est passé sur le segment "+segment.getName()+" position "+posSegment);

@@ -71,7 +71,6 @@ public class Carrefour<T extends Feu> extends Jonction{
 				break;
 			}
 		}
-		System.out.println("aaaaaaa");
 		if(feux.get(i).getCouleur() == Tricolor.Vert)
 		{
 			System.out.println("La voiture traverse le passage du carrefour");
