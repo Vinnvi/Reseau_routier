@@ -13,7 +13,7 @@ import ElementSimulation.Voiture;
 
 public class Carrefour<T extends Feu> extends Jonction{
 	
-	ArrayList <T> feux = new ArrayList<T>(); 
+	ArrayList <T> feux = new ArrayList<T>(); // L'indice du feu correspond à l'indice du segment dans segements liees
 	
 	public Carrefour(int nbRoutesConnectes,int typeFeu){
 		for(int i=0;i<nbRoutesConnectes;i++){
@@ -98,11 +98,19 @@ public class Carrefour<T extends Feu> extends Jonction{
 	public void notifPresence(boolean chSens,Voiture v) 
 	{
 		Iterator <T> it = feux.iterator();
-		while(it.hasNext()) {
-			/*if(it.next() == v.getSegmentActuel()) {
-				
-			}*/
+		SegmentRoute sVoiture = v.getSegmentActuel(); // On recupere l'indice du segment sur lequel se situe la voiture
+		int indice = 0;
+		for(indice=0;indice<this.getSegmentsLies().size();indice++){
+			if(this.getSegmentsLies().get(indice)==sVoiture){
+				break;
+			}
+			else{
+				indice++;
+			}
 		}
-		
+		while(it.hasNext()) { //On remet tous les feux au rouge...
+			it.next().setCouleur(Tricolor.Rouge);
+		}
+		feux.get(indice).setCouleur(Tricolor.Vert); //...pour remettre celui de la voiture au vert
 	}
 }
