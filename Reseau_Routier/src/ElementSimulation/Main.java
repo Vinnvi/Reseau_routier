@@ -105,7 +105,7 @@ public class Main
 		CapteurVitesse captV2 = new CapteurVitesse(R2, 74, false);
 		CapteurVitesse captV3 = new CapteurVitesse(R3, 78, false);
 		
-		PanneauLimitation panneau1 = new PanneauLimitation(R2,false,30);
+		PanneauLimitation panneau1 = new PanneauLimitation(R2,true,30);
 		
 		Voiture v1 = new Voiture(2,65,R1,0,true);
 		ArrayList<Voiture> listVoitures = new ArrayList<Voiture>();

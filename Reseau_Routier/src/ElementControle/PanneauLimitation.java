@@ -7,7 +7,7 @@ public class PanneauLimitation extends Semaphore{
 	int vitesseMax;
 	
 	public PanneauLimitation(SegmentRoute s,boolean sens, int vMax){
-		vMax = vitesseMax;
+		vitesseMax = vMax;
 		s.addSemaphore(this, sens);
 	}
 

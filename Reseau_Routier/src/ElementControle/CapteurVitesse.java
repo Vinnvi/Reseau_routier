@@ -20,7 +20,7 @@ public class CapteurVitesse extends Capteur
 		System.out.println("La voiture roule a " + (segment.getState().getVitesse()));
 	}
 	@Override
-	public void update(Voiture v) {
+	public void update(Voiture v) { 
 		System.out.println("La voiture roule a " + (v.getVitesse()));
 		
 	}

@@ -63,13 +63,14 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 	}
 	public void checkColor(F chFeu,Voiture v, SegmentRoute s) throws ExceptionVoiture
 	{
-		if(chFeu.getCouleur().equals(Tricolor.Vert))//(feu.getCouleur() == Tricolor.Vert)
+		if(chFeu.getCouleur().equals(Tricolor.Vert))
 		{
 			System.out.println("La voiture "+v.getId()+" traverse le passage");
 			if(v.getSens())
 				v.setEtat(segmentsLies.get(1), v.getSens(), 0);
 			else
 				v.setEtat(segmentsLies.get(0), v.getSens(),0);
+			v.getSegmentActuel().useSemaphore(v);
 		}
 		else if(chFeu.getCouleur() == Tricolor.Rouge){	
 			System.out.println("La voiture "+v.getId()+" s'arrete au passage");

@@ -102,20 +102,24 @@ public class SegmentRoute<T extends Jonction,C extends Capteur,S extends Semapho
 	
 	public void addSemaphore(S semaphore, boolean chSens)
 	{
-		if(chSens = true)
+		if(chSens == true)
 			semaphoreTrue = semaphore;
 		else
 			semaphoreFalse = semaphore;
 	}	
 	
 	public void useSemaphore(Voiture v){
+		
 		if(v.getSens()){
-			if(semaphoreTrue != null)
-				semaphoreTrue.update();
+			if(semaphoreTrue != null){
+				semaphoreTrue.update(v);
+			}
 		}
 		else{
-			if(semaphoreFalse != null)
-				semaphoreFalse.update();
+			if(semaphoreFalse != null){
+				semaphoreFalse.update(v);
+			}
+				
 		}
 	}
 }
