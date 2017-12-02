@@ -3,7 +3,7 @@ package ElementControle;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 
-public class PanneauLimitation extends Semaphore{
+public class PanneauLimitation implements Semaphore{
 	int vitesseMax;
 	
 	public PanneauLimitation(SegmentRoute s,boolean sens, int vMax){

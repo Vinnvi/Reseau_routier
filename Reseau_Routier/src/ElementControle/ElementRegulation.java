@@ -1,15 +1,7 @@
 package ElementControle;
 
-public abstract class ElementRegulation <S extends Semaphore>{
-	S s;
+import ElementSimulation.Voiture;
 
-	public S getS() {
-		return s;
-	}
-
-	public void setS(S s) {
-		this.s = s;
-	}
-	
-	public abstract void update();
+public interface ElementRegulation {
+	public void algo(Voiture v);
 }
