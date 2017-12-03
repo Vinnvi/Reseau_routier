@@ -2,6 +2,7 @@ package ElementSimulation;
 // On met 1 semaphore max par extremite
 import ElementControle.CapteurPresence;
 import ElementControle.CapteurVitesse;
+import ElementControle.ElementRegulationCapteurVitesse;
 import ElementControle.ElementRegulationFeux1;
 import ElementControle.Feu;
 import ElementControle.FeuBicolore;
@@ -93,7 +94,7 @@ public class Main
 		SegmentRoute R5 = new SegmentRoute(60,C2,B2,40,"R5");
 		SegmentRoute R6 = new SegmentRoute(45,P2,C2,30,"R6");
 		SegmentRoute R7 = new SegmentRoute(35,C1,P2,30,"R7");
-		ElementRegulationFeux1 elem1 = new ElementRegulationFeux1();
+		ElementRegulationCapteurVitesse elem1 = new ElementRegulationCapteurVitesse();
 		P1.addSegmentRoute(R2);
 		P1.addSegmentRoute(R3);
 		P2.addSegmentRoute(R7);
