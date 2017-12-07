@@ -8,6 +8,7 @@ public class CapteurPresence extends Capteur
 	public CapteurPresence(SegmentRoute chSegment, int chPos, boolean chSens,ElementRegulation e)
 	{
 		this.segment = chSegment;
+
 		this.setE(e);
 		posSegment = chPos;
 		segment.addCapteur(this, chSens);
@@ -22,6 +23,7 @@ public class CapteurPresence extends Capteur
 	}
 	public void update(Voiture v) {
 		System.out.println("Capteur : La voiture "+v.getId()+" est passé sur le segment "+segment.getName()+" position "+posSegment);
+		addPassage();
 		this.getE().algo(v);
 	}
 	

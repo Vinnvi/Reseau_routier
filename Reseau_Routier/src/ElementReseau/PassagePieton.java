@@ -13,7 +13,7 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 	@SuppressWarnings("unchecked")
 	public PassagePieton(int typeFeu)
 	{
-		if(typeFeu == 0)
+		if(typeFeu == 0) // Feux bicolors
 		{
 			FeuBicolore f1 = new FeuBicolore();
 			FeuBicolore f2 = new FeuBicolore();
@@ -22,7 +22,7 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 			feuT.setCouleur(Tricolor.Vert);
 			feuF.setCouleur(Tricolor.Rouge);
 		}
-		else 
+		else //Feux tricolors
 		{
 			FeuTricolore f1 = new FeuTricolore();
 			FeuTricolore f2 = new FeuTricolore();

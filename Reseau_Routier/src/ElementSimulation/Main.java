@@ -1,4 +1,5 @@
 package ElementSimulation;
+import ElementControle.Capteur;
 // On met 1 semaphore max par extremite
 import ElementControle.CapteurPresence;
 import ElementControle.CapteurVitesse;
@@ -13,14 +14,17 @@ import ElementReseau.Carrefour;
 import ElementReseau.PassagePieton;
 import ElementReseau.SegmentRoute;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Main 
+public class Main <T extends Capteur>
 {
 	private Timer t;
 	private static ArrayList<Feu> listFeux;
+	private static ArrayList <Capteur> capteurs = new ArrayList<>();
 	public void lancerSimulation(ArrayList<Voiture> list) 
 	{
 		t = new Timer();
@@ -64,6 +68,7 @@ public class Main
 					}
 				}
 				nbRepetitions++;
+				refreshCapteurs();
 				System.out.println("Intervalle suivant? tapez 'y' pour oui ou autre pour non");
 				reponse = scan.next();
 				updateFeux();
@@ -108,6 +113,15 @@ public class Main
 		CapteurVitesse captV2 = new CapteurVitesse(R2, 74, false);
 		CapteurVitesse captV3 = new CapteurVitesse(R3, 78, false);
 		
+		
+		capteurs.add(captP1);
+		capteurs.add(captP2);
+		capteurs.add(captP3);
+		capteurs.add(captV1);
+		capteurs.add(captV2);
+		capteurs.add(captV3);
+		
+		
 		PanneauLimitation panneau1 = new PanneauLimitation(R2,true,30);
 		
 		Voiture v1 = new Voiture(2,65,R1,0,true);
@@ -117,5 +131,12 @@ public class Main
 		Main simulation = new Main();
 		simulation.lancerSimulation(listVoitures);
 		//JonctionSimple j = new JonctionSimple(s1,s2);
+	}
+	
+	public void refreshCapteurs(){
+		Iterator<Capteur> i = capteurs.iterator();
+		while(i.hasNext()){
+			i.next().setNbPassages(false);
+		}
 	}
 }
