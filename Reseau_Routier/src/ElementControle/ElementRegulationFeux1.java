@@ -9,7 +9,7 @@ public class ElementRegulationFeux1 extends ElementRegulation{
 	int timer=0;
 	
 	public ElementRegulationFeux1(Carrefour c) {
-		// TODO Auto-generated constructor stub
+		this.c = c;
 	}
 	
 	public ElementRegulationFeux1(int timer) {
@@ -19,7 +19,8 @@ public class ElementRegulationFeux1 extends ElementRegulation{
 	@Override
 	public void algo() {
 		timer++;
-		if(timer%3 == 0){ // Tous les 3 indices de temps 
+		if(timer%3 == 0){ // Tous les 3 indices de temps
+			System.out.println("changement des feux du croisement");
 			Iterator<Feu> it = c.getFeux().iterator();
 			while(it.hasNext()){
 				Feu f = it.next();
@@ -34,7 +35,7 @@ public class ElementRegulationFeux1 extends ElementRegulation{
 				}
 			}
 		}
-	} //Consiste a juste changer la régulation en fonction du temps
+	} //Consiste a juste changer la rï¿½gulation en fonction du temps
 
 	@Override
 	public void update(Voiture v) {

@@ -3,6 +3,7 @@ import ElementControle.Capteur;
 // On met 1 semaphore max par extremite
 import ElementControle.CapteurPresence;
 import ElementControle.CapteurVitesse;
+import ElementControle.ElementRegulation;
 import ElementControle.ElementRegulationCapteurVitesse;
 import ElementControle.ElementRegulationFeux1;
 import ElementControle.Feu;
@@ -25,6 +26,7 @@ public class Main <T extends Capteur>
 	private Timer t;
 	private static ArrayList<Feu> listFeux;
 	private static ArrayList <Capteur> capteurs = new ArrayList<>();
+	private static ArrayList<ElementRegulation> elements = new ArrayList<>();
 	public void lancerSimulation(ArrayList<Voiture> list) 
 	{
 		t = new Timer();
@@ -127,6 +129,10 @@ public class Main <T extends Capteur>
 		Voiture v1 = new Voiture(2,65,R1,0,true);
 		ArrayList<Voiture> listVoitures = new ArrayList<Voiture>();
 		listVoitures.add(v1);
+		
+		
+		elements.add(new ElementRegulationFeux1(C1));
+		elements.add(new ElementRegulationFeux1(C2));
 		
 		Main simulation = new Main();
 		simulation.lancerSimulation(listVoitures);
