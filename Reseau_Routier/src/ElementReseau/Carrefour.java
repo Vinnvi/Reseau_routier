@@ -96,6 +96,13 @@ public class Carrefour<T extends Feu> extends Jonction{
 			segmentsLies.add(routes[i]);
 		}
 	}
+	
+	public ArrayList<T> getFeux() {
+		return feux;
+	}
+	public void setFeux(ArrayList<T> feux) {
+		this.feux = feux;
+	}
 	@Override
 	public void notifPresence(boolean chSens,Voiture v) 
 	{

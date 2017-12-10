@@ -1,7 +1,11 @@
 package ElementControle;
 
+import ElementReseau.Carrefour;
 import ElementSimulation.Voiture;
 
-public interface ElementRegulation {
-	public void algo(Voiture v);
+public abstract class ElementRegulation <S extends Semaphore>{
+	Carrefour c;
+	S s;
+	public abstract void algo();
+	public abstract void update(Voiture v);
 }

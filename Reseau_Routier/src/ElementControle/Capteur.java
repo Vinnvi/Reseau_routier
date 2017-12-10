@@ -6,13 +6,13 @@ import ElementReseau.Jonction;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 
-public abstract class Capteur<J extends Jonction> implements Semaphore
+public abstract class Capteur<J extends Jonction,E extends ElementRegulation> implements Semaphore
 {
 	protected SegmentRoute segment;
 	protected boolean nbPassages=false;
 	protected int posSegment;
 	protected J jonction;
-	private ElementRegulation e;
+	private E e;
 	public abstract void update();
 	public abstract void update(Voiture v);
 	public int getPosSegment()
@@ -23,7 +23,7 @@ public abstract class Capteur<J extends Jonction> implements Semaphore
 		return e;
 	}
 	public void setE(ElementRegulation e) {
-		this.e = e;
+		this.e = (E) e;
 	}
 	
 	public void addPassage(){
