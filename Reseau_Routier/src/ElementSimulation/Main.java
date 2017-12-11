@@ -24,7 +24,7 @@ import java.util.TimerTask;
 public class Main <T extends Capteur>
 {
 	private Timer t;
-	private static ArrayList<Feu> listFeux;
+	private static ArrayList<Feu> listFeux = new ArrayList<Feu>();
 	private static ArrayList <Capteur> capteurs = new ArrayList<>();
 	private static ArrayList<ElementRegulation> elements = new ArrayList<>();
 	public void lancerSimulation(ArrayList<Voiture> list) 
@@ -84,7 +84,6 @@ public class Main <T extends Capteur>
 	
 	public static void main(String[] args)
 	{
-		listFeux = new ArrayList<Feu>();
 		Barriere B1 = new Barriere();
 		Barriere B2 = new Barriere();
 		Barriere B3 = new Barriere();

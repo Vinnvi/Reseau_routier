@@ -16,9 +16,9 @@ import ElementSimulation.Voiture;
  * Une fois le feu passé, la voiture choisit un segment de facon aléatoire
  * @param <T>
  */
-public class Carrefour<T extends Feu> extends Jonction{
+public class Carrefour<F extends Feu> extends Jonction{
 	
-	ArrayList <T> feux = new ArrayList<T>(); // L'indice du feu correspond à l'indice du segment dans segements liees
+	ArrayList <F> feux = new ArrayList<F>(); // L'indice du feu correspond à l'indice du segment dans segements liees
 	
 	/**
 	 * Constructeur automatique selon le nombre de segments et le type de feu
@@ -28,13 +28,13 @@ public class Carrefour<T extends Feu> extends Jonction{
 	public Carrefour(int nbRoutesConnectes,int typeFeu){
 		for(int i=0;i<nbRoutesConnectes;i++){
 			if(typeFeu == 1){
-				T f = (T)new FeuBicolore();
+				F f = (F)new FeuBicolore();
 				feux.add(f);
 				f.setCouleur(Tricolor.Rouge);
 				Main.addFeu(feux.get(i));
 			}
 			else{
-				T f = (T)new FeuTricolore();
+				F f = (F)new FeuTricolore();
 				feux.add(f);
 				f.setCouleur(Tricolor.Rouge);
 				Main.addFeu(feux.get(i));
@@ -51,13 +51,13 @@ public class Carrefour<T extends Feu> extends Jonction{
 	public Carrefour(int typeFeu,SegmentRoute... routes){
 		for(int i=0;i<routes.length;i++){
 			if(typeFeu == 1){
-				T f = (T)new FeuBicolore();
+				F f = (F)new FeuBicolore();
 				feux.add(f);
 				f.setCouleur(Tricolor.Rouge);
 				Main.addFeu(feux.get(i));
 			}
 			else{
-				T f = (T)new FeuTricolore();
+				F f = (F)new FeuTricolore();
 				feux.add(f);
 				f.setCouleur(Tricolor.Rouge);
 				Main.addFeu(feux.get(i));
@@ -112,16 +112,16 @@ public class Carrefour<T extends Feu> extends Jonction{
 		}
 	}
 	
-	public ArrayList<T> getFeux() {
+	public ArrayList<F> getFeux() {
 		return feux;
 	}
-	public void setFeux(ArrayList<T> feux) {
+	public void setFeux(ArrayList<F> feux) {
 		this.feux = feux;
 	}
 	@Override
 	public void notifPresence(boolean chSens,Voiture v) 
 	{
-		Iterator <T> it = feux.iterator();
+		Iterator <F> it = feux.iterator();
 		SegmentRoute sVoiture = v.getSegmentActuel(); // On recupere l'indice du segment sur lequel se situe la voiture
 		int indice = 0;
 		for(indice=0;indice<this.getSegmentsLies().size();indice++){
