@@ -1,6 +1,9 @@
 package ElementSimulation;
 import ElementReseau.SegmentRoute;
 
+/**
+ * Implémentation d'une voiture avec ses attributs ainsi que les méthode pour avancer dans le parcours
+ */
 public class Voiture 
 {
 	private int id;
@@ -13,6 +16,13 @@ public class Voiture
 	private int distanceRestante = 0;
 	private static int identifiant = 0;
 	
+	/**
+	 * @param taille
+	 * @param vitesseMax
+	 * @param chSegment
+	 * @param chPosSeg
+	 * @param chSens
+	 */
 	public Voiture(int taille,int vitesseMax,SegmentRoute chSegment,int chPosSeg,boolean chSens){
 		longueur = taille;
 		vitMax = vitesseMax;
@@ -23,6 +33,14 @@ public class Voiture
 		positionSegment = chPosSeg;
 		identifiant++;
 	}
+
+	/**
+	 * Place la voiture sur un segmentRoute selon un sens et une position 
+	 * @param s
+	 * @param sens
+	 * @param chPos
+	 * @throws ExceptionVoiture
+	 */
 	public void setEtat(SegmentRoute s,boolean sens,int chPos) throws ExceptionVoiture{
 		segmentActuel = s;
 		sensActuel = sens;
@@ -30,6 +48,7 @@ public class Voiture
 		positionSegment = chPos;
 	}
 	
+
 	public void avancer() throws ExceptionVoiture{
 		distanceRestante = vitesseActuelle;
 		do{

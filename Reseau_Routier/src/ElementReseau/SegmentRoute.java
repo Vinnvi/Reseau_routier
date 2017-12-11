@@ -8,6 +8,13 @@ import ElementControle.Capteur;
 import ElementControle.Semaphore;
 import ElementSimulation.Voiture;
 
+/**
+ * Segment de route entre deux jonctions
+ * Caractéristiques d'une route, des capteurs et est relié a 2 jonctions
+ * @param <T>
+ * @param <C>
+ * @param <S>
+ */
 public class SegmentRoute<T extends Jonction,C extends Capteur,S extends Semaphore> {
 	String name;
 	private int longueur;

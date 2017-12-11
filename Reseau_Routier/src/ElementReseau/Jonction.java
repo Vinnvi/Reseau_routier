@@ -6,6 +6,10 @@ import java.util.Iterator;
 import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Voiture;
 
+/**
+ * Jonction abstraite
+ * Classe mère de Carrefour, Barrière, PassagePiéton...
+ */
 public abstract class Jonction {
 	protected final int longueur = 1;
 	private int idJonction;

@@ -3,6 +3,10 @@ package ElementReseau;
 import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Voiture;
 
+/**
+ * Barrière indiquant la fin d'une route
+ * La voiture s'arrête face à une barrière
+ */
 public class Barriere extends Jonction{
 	private SegmentRoute seg1;
 	

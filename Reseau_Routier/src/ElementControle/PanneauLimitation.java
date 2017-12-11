@@ -3,6 +3,11 @@ package ElementControle;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 
+/** aa
+ * 
+ * @author Florian
+ *
+ */
 public class PanneauLimitation implements Semaphore{
 	int vitesseMax;
 	

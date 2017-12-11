@@ -11,10 +11,20 @@ import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Main;
 import ElementSimulation.Voiture;
 
+/**
+ * Carrefour implémentant une multitude de segments et un nombre de feux adéquats
+ * Une fois le feu passé, la voiture choisit un segment de facon aléatoire
+ * @param <T>
+ */
 public class Carrefour<T extends Feu> extends Jonction{
 	
 	ArrayList <T> feux = new ArrayList<T>(); // L'indice du feu correspond à l'indice du segment dans segements liees
 	
+	/**
+	 * Constructeur automatique selon le nombre de segments et le type de feu
+	 * @param nbRoutesConnectes
+	 * @param typeFeu
+	 */
 	public Carrefour(int nbRoutesConnectes,int typeFeu){
 		for(int i=0;i<nbRoutesConnectes;i++){
 			if(typeFeu == 1){
@@ -33,6 +43,11 @@ public class Carrefour<T extends Feu> extends Jonction{
 		int nbAlea = (int) (Math.random() * (nbRoutesConnectes));
 		feux.get(nbAlea).setCouleur(Tricolor.Rouge);
 	}
+	/**
+	 * Constructeur avec personalisation des segments
+	 * @param typeFeu
+	 * @param routes
+	 */
 	public Carrefour(int typeFeu,SegmentRoute... routes){
 		for(int i=0;i<routes.length;i++){
 			if(typeFeu == 1){

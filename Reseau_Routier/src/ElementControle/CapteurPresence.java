@@ -3,6 +3,10 @@ import ElementReseau.Jonction;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 
+/**
+ * Capteur de Présence qui s'occupe uniquement de référencer les passages et d'envoyer cette information
+ *
+ */
 public class CapteurPresence extends Capteur
 {
 	public CapteurPresence(SegmentRoute chSegment, int chPos, boolean chSens,ElementRegulation e)

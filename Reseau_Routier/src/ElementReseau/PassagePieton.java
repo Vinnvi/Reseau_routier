@@ -6,10 +6,19 @@ import ElementControle.Tricolor;
 import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Voiture;
 
+/**
+ * Passage piéton entre deux segments avec deux feux Tricolor ou Bicolor
+ * Seul la couleur des feux importe au trajet de la voiture
+ * @param <F>
+ */
 public class PassagePieton<F extends Feu> extends JonctionSimple{
 	F feuT;
 	F feuF;
 	
+	/**
+	 * Constructeur automatique en ne prenant en compte que le type de feu
+	 * @param typeFeu
+	 */
 	@SuppressWarnings("unchecked")
 	public PassagePieton(int typeFeu)
 	{
@@ -32,6 +41,12 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 			feuF.setCouleur(Tricolor.Rouge);
 		}
 	}
+	/**
+	 * Constructeur personnalisé avec arguments
+	 * @param T1
+	 * @param T2
+	 * @param typeFeu
+	 */
 	public PassagePieton(SegmentRoute T1, SegmentRoute T2, int typeFeu)
 	{
 		segmentsLies.add(T1);segmentsLies.add(T2);

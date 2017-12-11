@@ -2,6 +2,10 @@ package ElementControle;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 
+/**
+ * Capteur de Vitesse qui envoie comme information la présence des voitures et vitesses
+ *
+ */
 public class CapteurVitesse extends Capteur
 {
 	public CapteurVitesse(SegmentRoute chSegment, int chPos, boolean chSens)
