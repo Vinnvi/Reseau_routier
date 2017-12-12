@@ -1,6 +1,7 @@
 package ElementControle;
 
 import ElementSimulation.Voiture;
+import enumerations.Tricolor;
 
 public class FeuTricolore extends Feu
 {

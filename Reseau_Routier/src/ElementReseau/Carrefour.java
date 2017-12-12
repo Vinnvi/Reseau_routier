@@ -6,10 +6,10 @@ import java.util.Iterator;
 import ElementControle.Feu;
 import ElementControle.FeuBicolore;
 import ElementControle.FeuTricolore;
-import ElementControle.Tricolor;
 import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Main;
 import ElementSimulation.Voiture;
+import enumerations.Tricolor;
 
 /**
  * Carrefour implémentant une multitude de segments et un nombre de feux adéquats
@@ -69,7 +69,6 @@ public class Carrefour<F extends Feu> extends Jonction{
 			segmentsLies.add(routes[i]);
 		}
 	}
-	
 	@Override
 	public void avancer(Voiture v) throws ExceptionVoiture {
 		SegmentRoute segmentActuel = v.getSegmentActuel();
@@ -111,7 +110,6 @@ public class Carrefour<F extends Feu> extends Jonction{
 			segmentsLies.add(routes[i]);
 		}
 	}
-	
 	public ArrayList<F> getFeux() {
 		return feux;
 	}

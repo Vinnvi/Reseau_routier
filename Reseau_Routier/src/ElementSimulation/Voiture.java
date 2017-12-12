@@ -49,6 +49,11 @@ public class Voiture
 	}
 	
 
+	/**
+	 * Fonction principale de la voiture pour avancer
+	 * Comportement de la voiture sur la route, peut appeler les fonctions avancer des jonctions si nécessaire
+	 * @throws ExceptionVoiture
+	 */
 	public void avancer() throws ExceptionVoiture{
 		distanceRestante = vitesseActuelle;
 		do{

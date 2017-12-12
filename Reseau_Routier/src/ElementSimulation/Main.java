@@ -27,6 +27,11 @@ public class Main <T extends Capteur>
 	private static ArrayList<Feu> listFeux = new ArrayList<Feu>();
 	private static ArrayList <Capteur> capteurs = new ArrayList<>();
 	private static ArrayList<ElementRegulation> elements = new ArrayList<>();
+	
+	/**
+	 * Lancement algorithme avec intervalles de temps
+	 * @param list
+	 */
 	public void lancerSimulation(ArrayList<Voiture> list) 
 	{
 		t = new Timer();
@@ -36,6 +41,9 @@ public class Main <T extends Capteur>
 	{
 		listFeux.add(f);
 	}
+	/**
+	 * On change la couleur de tous les feux
+	 */
 	public static void updateFeux()
 	{
 		for(Feu f : listFeux)
@@ -43,6 +51,9 @@ public class Main <T extends Capteur>
 			f.switchColor();
 		}
 	}
+	/**
+	 * Lancement des intervalles de temps
+	 */
 	class Intervalle extends TimerTask 
 	{
 		int nbRepetitions = 1;
@@ -59,10 +70,10 @@ public class Main <T extends Capteur>
 			do
 			{
 				System.out.println("Intervalle numero "+nbRepetitions+" ------------");
-				for(Voiture a : listVoitures)
+				for(Voiture v : listVoitures)
 				{
 					try {
-						a.avancer();
+						v.avancer();
 					} catch (ExceptionVoiture e) 
 					{
 						// TODO Auto-generated catch block
@@ -73,15 +84,17 @@ public class Main <T extends Capteur>
 				refreshCapteurs();
 				System.out.println("Intervalle suivant? tapez 'y' pour oui ou autre pour non");
 				reponse = scan.next();
-				updateFeux();
-						
+				updateFeux();	
 				
 		    }while (reponse.equals("y"));
 			System.out.println("Termine!" + reponse);
 			t.cancel();
 		}
     }
-	
+	/**
+	 * Partie principale, implémentation du réseau et lancement de l'algorithme
+	 * @param args
+	 */
 	public static void main(String[] args)
 	{
 		Barriere B1 = new Barriere();
@@ -109,8 +122,7 @@ public class Main <T extends Capteur>
 		
 		
 		ElementRegulationFeux1 e1 = new ElementRegulationFeux1(C1);
-		ElementRegulationFeux1 e2 = new ElementRegulationFeux1(C2);
-		
+		ElementRegulationFeux1 e2 = new ElementRegulationFeux1(C2);	
 		
 		CapteurPresence captP1 = new CapteurPresence(R1, 42, true,e1);
 		CapteurPresence captP2 = new CapteurPresence(R6, 30, true,e2);
@@ -119,7 +131,6 @@ public class Main <T extends Capteur>
 		CapteurVitesse captV2 = new CapteurVitesse(R2, 74, false,e1);
 		CapteurVitesse captV3 = new CapteurVitesse(R3, 78, false,e1);
 		
-		
 		capteurs.add(captP1);
 		capteurs.add(captP2);
 		capteurs.add(captP3);
@@ -127,13 +138,11 @@ public class Main <T extends Capteur>
 		capteurs.add(captV2);
 		capteurs.add(captV3);
 		
-		
 		PanneauLimitation panneau1 = new PanneauLimitation(R2,true,30);
 		
 		Voiture v1 = new Voiture(2,65,R1,0,true);
 		ArrayList<Voiture> listVoitures = new ArrayList<Voiture>();
 		listVoitures.add(v1);
-		
 		
 		elements.add(e1);
 		elements.add(e2);
@@ -142,14 +151,15 @@ public class Main <T extends Capteur>
 		simulation.lancerSimulation(listVoitures);
 		//JonctionSimple j = new JonctionSimple(s1,s2);
 	}
-	
+	/**
+	 * La détection de présence est remise a 0
+	 */
 	public void refreshCapteurs(){
 		Iterator<Capteur> i = capteurs.iterator();
 		while(i.hasNext()){
 			i.next().setNbPassages(false);
 		}
 	}
-	
 	public void checkElements(){
 		Iterator<ElementRegulation> it = elements.iterator();
 		while(it.hasNext()){

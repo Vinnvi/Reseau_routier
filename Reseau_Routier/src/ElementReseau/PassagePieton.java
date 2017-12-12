@@ -2,9 +2,9 @@ package ElementReseau;
 import ElementControle.Feu;
 import ElementControle.FeuBicolore;
 import ElementControle.FeuTricolore;
-import ElementControle.Tricolor;
 import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Voiture;
+import enumerations.Tricolor;
 
 /**
  * Passage piéton entre deux segments avec deux feux Tricolor ou Bicolor
@@ -76,6 +76,13 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 		else
 			checkColor(feuF,v,segmentsLies.get(1));	
 	}
+	/**
+	 * On check feu pour voir si l'on peut passer, s'arreter ou que l'on doit diviser vitesse par 2
+	 * @param chFeu
+	 * @param v
+	 * @param s
+	 * @throws ExceptionVoiture
+	 */
 	public void checkColor(F chFeu,Voiture v, SegmentRoute s) throws ExceptionVoiture
 	{
 		if(chFeu.getCouleur().equals(Tricolor.Vert))
@@ -90,10 +97,15 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 		else if(chFeu.getCouleur() == Tricolor.Rouge){	
 			System.out.println("La voiture "+v.getId()+" s'arrete au passage");
 			v.setDistRestante(0);
-			
 		}
-		
 		else if(chFeu.getCouleur() == Tricolor.Orange){	
+			System.out.println("La voiture "+v.getId()+" traverse le passage au feu orange");
+			if(v.getSens())
+				v.setEtat(segmentsLies.get(1), v.getSens(), 0);
+			else
+				v.setEtat(segmentsLies.get(0), v.getSens(),0);
+			v.getSegmentActuel().useSemaphore(v);
+			v.setDistRestante(v.getDistRestante()/2); //On divise vitesse par 2 pour le reste de l'intervalle
 		}
 	}
 	@Override

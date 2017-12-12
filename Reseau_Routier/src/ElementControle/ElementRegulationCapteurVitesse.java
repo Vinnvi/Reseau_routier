@@ -7,6 +7,7 @@ import ElementReseau.Carrefour;
 import ElementReseau.Jonction;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
+import enumerations.Tricolor;
 
 public class ElementRegulationCapteurVitesse <J extends Jonction,T extends Feu> extends ElementRegulation{
 	ArrayList<Voiture> voitures = new ArrayList<>();

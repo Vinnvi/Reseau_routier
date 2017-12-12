@@ -1,10 +1,11 @@
 package ElementControle;
 
 import ElementSimulation.Voiture;
+import enumerations.Bicolor;
 
 public class FeuBicolore extends Feu
 {
-	Tricolor couleur;
+	Bicolor couleur;
 	public FeuBicolore()
 	{
 		

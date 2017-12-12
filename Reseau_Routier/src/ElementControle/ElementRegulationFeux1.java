@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import ElementReseau.Carrefour;
 import ElementSimulation.Voiture;
+import enumerations.Tricolor;
 
 public class ElementRegulationFeux1 extends ElementRegulation{
 	int timer=0;
