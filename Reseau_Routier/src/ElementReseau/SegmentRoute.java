@@ -15,37 +15,37 @@ import ElementSimulation.Voiture;
  * @param <C>
  * @param <S>
  */
-public class SegmentRoute<T extends Jonction,C extends Capteur,S extends Semaphore> {
+public class SegmentRoute<J extends Jonction,C extends Capteur,S extends Semaphore> {
 	String name;
 	private int longueur;
 	private int limitVitesse;
 	private List<C> capteursSensT = new ArrayList<C>();
 	private List<C> capteursSensF = new ArrayList<C>();
-	private T jonctionGauche;
-	private T jonctionDroite;
+	private J jonctionGauche;
+	private J jonctionDroite;
 	private Voiture state;
 	private S semaphoreTrue;
 	private S semaphoreFalse;
 	
-	public SegmentRoute(int maLongeur,T g,T d,int chLimit,String nom){
+	public SegmentRoute(int maLongeur,J g,J d,int chLimit,String nom){
 		longueur = maLongeur;
 		name = nom;
 		setJonctionGauche(g);
 		setJonctionDroite(d);
 		limitVitesse = chLimit;
 	}
-	public void setJonctionGauche(T j){
+	public void setJonctionGauche(J j){
 		jonctionGauche = j;
 		j.addSegmentRoute(this);
 	}
-	public void setJonctionDroite(T j){
+	public void setJonctionDroite(J j){
 		jonctionDroite = j;
 		j.addSegmentRoute(this);
 	}
 	public Jonction getJonctionGauche() {
 		return jonctionGauche;
 	}
-	public T getJonctionDroite() {
+	public J getJonctionDroite() {
 		return jonctionDroite;
 	}
 	public int getLongueur(){

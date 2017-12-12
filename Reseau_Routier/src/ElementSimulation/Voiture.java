@@ -52,32 +52,35 @@ public class Voiture
 	public void avancer() throws ExceptionVoiture{
 		distanceRestante = vitesseActuelle;
 		do{
-				if(positionSegment + distanceRestante <= segmentActuel.getLongueur())
+				if(positionSegment + distanceRestante <= segmentActuel.getLongueur()+1)//on ne traverse pas la jonction
 				{
+					System.out.println("b");
 					segmentActuel.useCapteur(this, positionSegment, positionSegment + distanceRestante );
 					positionSegment += distanceRestante;
 					distanceRestante = 0;
 				}
-				else
+				else //On a possibilité de traverser jonction
 				{
 					//Fin du parcours restant du segment	
 					segmentActuel.useCapteur(this, positionSegment,segmentActuel.getLongueur());
 					distanceRestante = positionSegment + distanceRestante - segmentActuel.getLongueur();
 					positionSegment = segmentActuel.getLongueur();
+					//On arrive à la Jonction
 					if(sensActuel)
 						segmentActuel.getJonctionDroite().avancer(this);
 					else
 						segmentActuel.getJonctionGauche().avancer(this);
-					if(vitesseActuelle != 0 && distanceRestante != 0)
-					{
+					if(vitesseActuelle != 0 && distanceRestante != 0) // On traverse jonction de longueur 1 et on roule encore
 						distanceRestante -= 1;
-						/*
-						if(segmentActuel.getJonctionDroite().getSegmentsLies().size() <= 1){ // La jonction n'est liée à aucun autre segment
-							vitesseActuelle = 0;
-							System.out.println("Fin de route : la voiture a atteint le bout de la route");
-						}
-						}*/
-					}
+					vitesseActuelle = getVitLegale(); //On respecte nouvelle limitation
+					if(distanceRestante > vitesseActuelle) //On ne veut pas aller plus vite que limitation
+						distanceRestante = vitesseActuelle;
+					
+					/*
+					if(segmentActuel.getJonctionDroite().getSegmentsLies().size() <= 1){ // La jonction n'est liée à aucun autre segment
+						vitesseActuelle = 0;
+						System.out.println("Fin de route : la voiture a atteint le bout de la route");
+					}*/
 				}
 		}while(distanceRestante > 0);
 		System.out.println(this.toString());
@@ -97,6 +100,9 @@ public class Voiture
 	public int getId()
 	{
 		return id;
+	}
+	public int getPositionSegment() {
+		return positionSegment;
 	}
 	public void setPositionSegment(int positionSegment) {
 		this.positionSegment = positionSegment;
