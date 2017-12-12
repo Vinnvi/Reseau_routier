@@ -1,11 +1,13 @@
 package ElementControle;
 
+import java.util.ArrayList;
+
 import ElementReseau.Carrefour;
 import ElementSimulation.Voiture;
 
 public abstract class ElementRegulation <S extends Semaphore>{
 	Carrefour c;
-	S s;
+	ArrayList<S>  s = new ArrayList<>();
 	public abstract void algo();
-	public abstract void update(Voiture v);
+	public void update(Voiture v){};
 }

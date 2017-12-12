@@ -8,7 +8,7 @@ import ElementSimulation.Voiture;
  * @author Florian
  *
  */
-public class PanneauLimitation implements Semaphore{
+public class PanneauLimitation extends Semaphore{
 	int vitesseMax;
 	
 	public PanneauLimitation(SegmentRoute s,boolean sens, int vMax){
@@ -25,6 +25,6 @@ public class PanneauLimitation implements Semaphore{
 	@Override
 	public void update(Voiture v) {
 		v.setVitesseActuelle(vitesseMax);
-		System.out.println("la voiture "+v.getId()+" passe devant le panneau de limitation qui limite à "+vitesseMax+" la route "+v.getSegmentActuel().getName());
+		System.out.println("la voiture "+v.getId()+" passe devant le panneau de limitation qui limite ï¿½ "+vitesseMax+" la route "+v.getSegmentActuel().getName());
 	}
 }

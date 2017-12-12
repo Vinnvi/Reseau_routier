@@ -2,6 +2,7 @@ package ElementControle;
 
 import java.util.Iterator;
 
+import ElementReseau.Carrefour;
 import ElementReseau.Jonction;
 import ElementReseau.PassagePieton;
 import ElementReseau.SegmentRoute;
@@ -20,10 +21,16 @@ public class ElementRegulationFeux2 <J extends Jonction> extends ElementRegulati
 		
 	} // Changer les feux en fonction du traffic
 
-	@Override
-	public void update(Voiture v) {
-		// TODO Auto-generated method stub
-		
+	public ElementRegulationFeux2(Carrefour c) {
+		this.c = c;
+		Iterator<Feu> it = c.getFeux().iterator();
+		while(it.hasNext()){
+			this.s.add(it.next());
+		}
 	}
+
+
+	
+
 
 }
