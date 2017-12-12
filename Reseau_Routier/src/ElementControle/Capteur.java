@@ -8,29 +8,22 @@ import ElementSimulation.Voiture;
 
 
 /**
- * Implémentation abstraite d'un capteur
+ * Implï¿½mentation abstraite d'un capteur
  *
  * @param <J>
  * @param <E>
  */
-public abstract class Capteur<J extends Jonction,E extends ElementRegulation> implements Semaphore
+public abstract class Capteur<J extends Jonction,E extends ElementRegulation> extends Semaphore
 {
 	protected SegmentRoute segment;
 	protected boolean nbPassages=false;
 	protected int posSegment;
-	protected J jonction;
-	private E e;
+	protected J jonction;;
 	public abstract void update();
 	public abstract void update(Voiture v);
 	public int getPosSegment()
 	{
 		return posSegment;
-	}
-	public ElementRegulation getE() {
-		return e;
-	}
-	public void setE(ElementRegulation e) {
-		this.e = (E) e;
 	}
 	/**
 	 * Comptabilise les passages pour s'assurer du risque de collision

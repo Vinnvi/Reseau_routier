@@ -3,6 +3,7 @@ package ElementControle;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import ElementReseau.Carrefour;
 import ElementReseau.Jonction;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
@@ -42,7 +43,7 @@ public class ElementRegulationCapteurVitesse <J extends Jonction,T extends Feu> 
 				
 			}
 			else{
-				System.out.println("Limitation de vitesse respectée par la voiture "+v.getId());
+				System.out.println("Limitation de vitesse respectï¿½e par la voiture "+v.getId());
 			}
 		}
 		voitures.clear();
@@ -50,6 +51,14 @@ public class ElementRegulationCapteurVitesse <J extends Jonction,T extends Feu> 
 	}
 	public void update(Voiture v){
 		voitures.add(v);
+	}
+	
+	public ElementRegulationCapteurVitesse(Carrefour c){
+		this.c = c;
+		Iterator<Feu> it = c.getFeux().iterator();
+		while(it.hasNext()){
+			this.s.add(it.next());
+		}
 	}
 	
 }

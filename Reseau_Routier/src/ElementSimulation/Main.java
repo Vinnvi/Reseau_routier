@@ -100,19 +100,24 @@ public class Main <T extends Capteur>
 		SegmentRoute R5 = new SegmentRoute(60,C2,B2,40,"R5");
 		SegmentRoute R6 = new SegmentRoute(45,P2,C2,30,"R6");
 		SegmentRoute R7 = new SegmentRoute(35,C1,P2,30,"R7");
-		ElementRegulationCapteurVitesse elem1 = new ElementRegulationCapteurVitesse();
 		P1.addSegmentRoute(R2);
 		P1.addSegmentRoute(R3);
 		P2.addSegmentRoute(R7);
 		P2.addSegmentRoute(R6);
 		C1.addSeg(R1,R2,R3);
 		C2.addSeg(R3,R4,R5,R6);
-		CapteurPresence captP1 = new CapteurPresence(R1, 42, true,elem1);
-		CapteurPresence captP2 = new CapteurPresence(R6, 30, true,elem1);
-		CapteurPresence captP3 = new CapteurPresence(R6, 20, false,elem1);
-		CapteurVitesse captV1 = new CapteurVitesse(R1, 52, true);
-		CapteurVitesse captV2 = new CapteurVitesse(R2, 74, false);
-		CapteurVitesse captV3 = new CapteurVitesse(R3, 78, false);
+		
+		
+		ElementRegulationFeux1 e1 = new ElementRegulationFeux1(C1);
+		ElementRegulationFeux1 e2 = new ElementRegulationFeux1(C2);
+		
+		
+		CapteurPresence captP1 = new CapteurPresence(R1, 42, true,e1);
+		CapteurPresence captP2 = new CapteurPresence(R6, 30, true,e2);
+		CapteurPresence captP3 = new CapteurPresence(R6, 20, false,e2);
+		CapteurVitesse captV1 = new CapteurVitesse(R1, 52, true,e1);
+		CapteurVitesse captV2 = new CapteurVitesse(R2, 74, false,e1);
+		CapteurVitesse captV3 = new CapteurVitesse(R3, 78, false,e1);
 		
 		
 		capteurs.add(captP1);
@@ -130,8 +135,8 @@ public class Main <T extends Capteur>
 		listVoitures.add(v1);
 		
 		
-		elements.add(new ElementRegulationFeux1(C1));
-		elements.add(new ElementRegulationFeux1(C2));
+		elements.add(e1);
+		elements.add(e2);
 		
 		Main simulation = new Main();
 		simulation.lancerSimulation(listVoitures);
@@ -144,4 +149,12 @@ public class Main <T extends Capteur>
 			i.next().setNbPassages(false);
 		}
 	}
+	
+	public void checkElements(){
+		Iterator<ElementRegulation> it = elements.iterator();
+		while(it.hasNext()){
+			it.next().algo();
+		}
+		
+ 	}
 }

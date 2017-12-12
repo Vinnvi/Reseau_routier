@@ -4,7 +4,7 @@ import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 
 /**
- * Capteur de Présence qui s'occupe uniquement de référencer les passages et d'envoyer cette information
+ * Capteur de Prï¿½sence qui s'occupe uniquement de rï¿½fï¿½rencer les passages et d'envoyer cette information
  *
  */
 public class CapteurPresence extends Capteur
@@ -12,23 +12,23 @@ public class CapteurPresence extends Capteur
 	public CapteurPresence(SegmentRoute chSegment, int chPos, boolean chSens,ElementRegulation e)
 	{
 		this.segment = chSegment;
-
-		this.setE(e);
 		posSegment = chPos;
 		segment.addCapteur(this, chSens);
 		if(chSens)
 			jonction = segment.getJonctionDroite();
 		else
 			jonction = segment.getJonctionGauche();
+		this.setE(e);
 	}
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 	}
 	public void update(Voiture v) {
-		System.out.println("Capteur : La voiture "+v.getId()+" est passé sur le segment "+segment.getName()+" position "+posSegment);
+		System.out.println("Capteur : La voiture "+v.getId()+" est passe sur le segment "+segment.getName()+" position "+posSegment);
 		addPassage();
-		this.getE().update(v);
+		if(this.getE()!=null) //a gerer
+			this.getE().update(v);
 	}
 	
 	

@@ -10,6 +10,11 @@ public class ElementRegulationFeux1 extends ElementRegulation{
 	
 	public ElementRegulationFeux1(Carrefour c) {
 		this.c = c;
+		Iterator<Feu> it = c.getFeux().iterator();
+		while(it.hasNext()){
+			this.s.add(it.next());
+		}
+		
 	}
 	
 	public ElementRegulationFeux1(int timer) {
@@ -35,7 +40,7 @@ public class ElementRegulationFeux1 extends ElementRegulation{
 				}
 			}
 		}
-	} //Consiste a juste changer la r�gulation en fonction du temps
+	} //Consiste a juste changer la regulation en fonction du temps
 
 	@Override
 	public void update(Voiture v) {
