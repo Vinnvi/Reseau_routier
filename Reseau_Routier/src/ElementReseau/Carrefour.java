@@ -7,7 +7,7 @@ import ElementControle.Feu;
 import ElementControle.FeuBicolore;
 import ElementControle.FeuTricolore;
 import ElementSimulation.ExceptionVoiture;
-import ElementSimulation.Main;
+import ElementSimulation.Reseau;
 import ElementSimulation.Voiture;
 import enumerations.Tricolor;
 
@@ -32,13 +32,13 @@ public class Carrefour<F extends Feu> extends Jonction{
 				F f = (F)new FeuBicolore();
 				feux.add(f);
 				f.setCouleur(Tricolor.Rouge);
-				Main.addFeu(feux.get(i));
+				Reseau.addFeu(feux.get(i));
 			}
 			else{
 				F f = (F)new FeuTricolore();
 				feux.add(f);
 				f.setCouleur(Tricolor.Rouge);
-				Main.addFeu(feux.get(i));
+				Reseau.addFeu(feux.get(i));
 			}
 		}
 		int nbAlea = (int) (Math.random() * (nbRoutesConnectes));
@@ -56,13 +56,13 @@ public class Carrefour<F extends Feu> extends Jonction{
 				F f = (F)new FeuBicolore();
 				feux.add(f);
 				f.setCouleur(Tricolor.Rouge);
-				Main.addFeu(feux.get(i));
+				Reseau.addFeu(feux.get(i));
 			}
 			else{
 				F f = (F)new FeuTricolore();
 				feux.add(f);
 				f.setCouleur(Tricolor.Rouge);
-				Main.addFeu(feux.get(i));
+				Reseau.addFeu(feux.get(i));
 			}
 		}
 		int nbAlea = (int) (Math.random() * (routes.length));
