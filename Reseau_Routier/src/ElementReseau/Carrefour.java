@@ -10,20 +10,21 @@ import ElementSimulation.Voiture;
 import enumerations.Tricolor;
 
 /**
- * Carrefour implémentant une multitude de segments et un nombre de feux adéquats
- * Une fois le feu passé, la voiture choisit un segment de facon aléatoire
+ * Carrefour implï¿½mentant une multitude de segments et un nombre de feux adï¿½quats
+ * Une fois le feu passï¿½, la voiture choisit un segment de facon alï¿½atoire
  * @param <T>
  */
 public class Carrefour<F extends Feu> extends Jonction{
 	
-	ArrayList <F> feux; // L'indice du feu correspond à l'indice du segment dans segements liees
+	ArrayList <F> feux; // L'indice du feu correspond ï¿½ l'indice du segment dans segements liees
 	
 	/**
 	 * Constructeur automatique selon le nombre de segments et le type de feu
 	 * @param nbRoutesConnectes
 	 * @param typeFeu
 	 */
-	public Carrefour(int nbRoutesConnectes,int typeFeu){
+	public Carrefour(int nbRoutesConnectes,int typeFeu,String name){
+		this.setName(name);
 		feux = new ArrayList<F>();
 		for(int i=0;i<nbRoutesConnectes;i++){
 			if(typeFeu == 1){
@@ -47,7 +48,8 @@ public class Carrefour<F extends Feu> extends Jonction{
 	 * @param typeFeu
 	 * @param routes
 	 */
-	public Carrefour(int typeFeu,SegmentRoute... routes){
+	public Carrefour(String name,int typeFeu,SegmentRoute... routes){
+		this.setName(name);
 		feux = new ArrayList<F>();
 		for(int i=0;i<routes.length;i++){
 			if(typeFeu == 1){

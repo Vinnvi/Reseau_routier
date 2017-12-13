@@ -6,7 +6,7 @@ import ElementSimulation.Voiture;
 import enumerations.Tricolor;
 
 /**
- * Passage piéton entre deux segments avec deux feux Tricolor ou Bicolor
+ * Passage piï¿½ton entre deux segments avec deux feux Tricolor ou Bicolor
  * Seul la couleur des feux importe au trajet de la voiture
  * @param <F>
  */
@@ -19,7 +19,7 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 	 * @param typeFeu
 	 */
 	@SuppressWarnings("unchecked")
-	public PassagePieton(int typeFeu)
+	public PassagePieton(int typeFeu,String name)
 	{
 		if(typeFeu == 0) // Feux bicolors
 		{
@@ -41,13 +41,15 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 		}
 	}
 	/**
-	 * Constructeur personnalisé avec arguments
+	 * Constructeur personnalise avec arguments
 	 * @param T1
 	 * @param T2
 	 * @param typeFeu
+	 * @param name
 	 */
-	public PassagePieton(SegmentRoute T1, SegmentRoute T2, int typeFeu)
+	public PassagePieton(SegmentRoute T1, SegmentRoute T2, int typeFeu,String name)
 	{
+		this.setName(name);
 		segmentsLies.add(T1);segmentsLies.add(T2);
 		if(typeFeu == 0)
 		{

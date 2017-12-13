@@ -13,12 +13,13 @@ import ElementSimulation.Voiture;
  * @param <J>
  * @param <E>
  */
-public abstract class Capteur<J extends Jonction,E extends ElementRegulation> extends Semaphore
+public abstract class Capteur<J extends Jonction,E extends ElementRegulation>
 {
 	protected SegmentRoute segment;
 	protected boolean nbPassages=false;
 	protected int posSegment;
-	protected J jonction;;
+	protected J jonction;
+	protected E e;
 	public abstract void update();
 	public abstract void update(Voiture v);
 	public int getPosSegment()
@@ -41,6 +42,12 @@ public abstract class Capteur<J extends Jonction,E extends ElementRegulation> ex
 	}
 	public void setNbPassages(boolean nbPassages) {
 		this.nbPassages = nbPassages;
+	}
+	public E getE() {
+		return e;
+	}
+	public void setE(E e) {
+		this.e = e;
 	}
 	
 	

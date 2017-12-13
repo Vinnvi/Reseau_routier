@@ -37,14 +37,14 @@ public class Reseau <T extends Capteur>
 		listVoitures = new ArrayList<Voiture>();
 		elements = new ArrayList<>();
 		
-		Barriere B1 = new Barriere();
-		Barriere B2 = new Barriere();
-		Barriere B3 = new Barriere();
+		Barriere B1 = new Barriere("B1");
+		Barriere B2 = new Barriere("B2");
+		Barriere B3 = new Barriere("B3");
 		
-		PassagePieton<FeuBicolore> P1 = new PassagePieton(0);
-		PassagePieton<FeuTricolore> P2 = new PassagePieton(1);
-		Carrefour C1 = new Carrefour(3, 0);
-		Carrefour C2 = new Carrefour(4, 0);
+		PassagePieton<FeuBicolore> P1 = new PassagePieton(0,"P1");
+		PassagePieton<FeuTricolore> P2 = new PassagePieton(1,"P2");
+		Carrefour C1 = new Carrefour(3,0,"C1");
+		Carrefour C2 = new Carrefour(4, 0,"C2");
 		
 		SegmentRoute R1 = new SegmentRoute(60,B1,C1,70,"R1");
 		SegmentRoute R2 = new SegmentRoute(100,C1,P1,50,"R2");
@@ -131,6 +131,7 @@ public class Reseau <T extends Capteur>
 				{
 						v.avancer();
 				}
+				checkElements();
 				nbRepetitions++;
 				refreshCapteurs();
 				System.out.println("Intervalle suivant? tapez 'y' pour oui ou autre pour non");
@@ -143,7 +144,7 @@ public class Reseau <T extends Capteur>
 		}
     }
 	/**
-	 * Partie principale, implémentation du réseau et lancement de l'algorithme
+	 * Partie principale, implï¿½mentation du rï¿½seau et lancement de l'algorithme
 	 * @param args
 	 */
 	public static void main(String[] args)
@@ -203,7 +204,7 @@ public class Reseau <T extends Capteur>
 	      return instance;
 	   }
 	/**
-	 * La détection de présence est remise a 0
+	 * La dï¿½tection de prï¿½sence est remise a 0
 	 */
 	public void refreshCapteurs(){
 		Iterator<Capteur> i = capteurs.iterator();

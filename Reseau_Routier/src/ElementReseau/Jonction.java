@@ -6,10 +6,11 @@ import ElementSimulation.Voiture;
 
 /**
  * Jonction abstraite
- * Classe mère de Carrefour, Barrière, PassagePiéton...
+ * Classe mï¿½re de Carrefour, Barriï¿½re, PassagePiï¿½ton...
  */
 public abstract class Jonction {
 	protected final int longueur = 1;
+	private String name;
 	private int idJonction;
 	protected ArrayList <SegmentRoute>  segmentsLies = new ArrayList<>();
 	
@@ -33,4 +34,12 @@ public abstract class Jonction {
 		return str;
 		
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
 }

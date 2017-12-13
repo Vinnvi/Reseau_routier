@@ -3,14 +3,17 @@ package ElementReseau;
 import ElementSimulation.Voiture;
 
 /**
- * Barrière indiquant la fin d'une route
- * La voiture s'arrête face à une barrière
+ * Barriere indiquant la fin d'une route
+ * La voiture s'arrete face a une barriere
  */
 public class Barriere extends Jonction{
 	private SegmentRoute seg1;
 	
-	public Barriere()
+	
+	
+	public Barriere(String name)
 	{
+		this.setName(name);
 	}
 	public void avancer(Voiture v){
 		System.out.println("La voiture "+v.getId()+" a rencontre une barriere");
