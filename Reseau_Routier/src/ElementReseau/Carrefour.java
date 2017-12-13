@@ -18,7 +18,7 @@ import enumerations.Tricolor;
  */
 public class Carrefour<F extends Feu> extends Jonction{
 	
-	ArrayList <F> feux = new ArrayList<F>(); // L'indice du feu correspond à l'indice du segment dans segements liees
+	ArrayList <F> feux; // L'indice du feu correspond à l'indice du segment dans segements liees
 	
 	/**
 	 * Constructeur automatique selon le nombre de segments et le type de feu
@@ -26,6 +26,7 @@ public class Carrefour<F extends Feu> extends Jonction{
 	 * @param typeFeu
 	 */
 	public Carrefour(int nbRoutesConnectes,int typeFeu){
+		feux = new ArrayList<F>();
 		for(int i=0;i<nbRoutesConnectes;i++){
 			if(typeFeu == 1){
 				F f = (F)new FeuBicolore();
@@ -49,6 +50,7 @@ public class Carrefour<F extends Feu> extends Jonction{
 	 * @param routes
 	 */
 	public Carrefour(int typeFeu,SegmentRoute... routes){
+		feux = new ArrayList<F>();
 		for(int i=0;i<routes.length;i++){
 			if(typeFeu == 1){
 				F f = (F)new FeuBicolore();

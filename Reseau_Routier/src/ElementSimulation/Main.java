@@ -23,19 +23,76 @@ import java.util.TimerTask;
 
 public class Main <T extends Capteur>
 {
+	private static Main instance = new Main();
 	private Timer t;
-	private static ArrayList<Feu> listFeux = new ArrayList<Feu>();
-	private static ArrayList <Capteur> capteurs = new ArrayList<>();
-	private static ArrayList<ElementRegulation> elements = new ArrayList<>();
+	private static ArrayList<Feu> listFeux;
+	private static ArrayList <Capteur> capteurs;
+	static ArrayList<Voiture> listVoitures;
+	private static ArrayList<ElementRegulation> elements;
 	
+	private Main()
+	{
+		listFeux = new ArrayList<Feu>();
+		capteurs = new ArrayList<>();
+		listVoitures = new ArrayList<Voiture>();
+		elements = new ArrayList<>();
+		
+		Barriere B1 = new Barriere();
+		Barriere B2 = new Barriere();
+		Barriere B3 = new Barriere();
+		
+		PassagePieton<FeuBicolore> P1 = new PassagePieton(0);
+		PassagePieton<FeuTricolore> P2 = new PassagePieton(1);
+		Carrefour C1 = new Carrefour(3, 0);
+		Carrefour C2 = new Carrefour(4, 0);
+		
+		SegmentRoute R1 = new SegmentRoute(60,B1,C1,70,"R1");
+		SegmentRoute R2 = new SegmentRoute(100,C1,P1,50,"R2");
+		SegmentRoute R3 = new SegmentRoute(100,P1,C2,60,"R3");
+		SegmentRoute R4 = new SegmentRoute(45,C2,B3,30,"R4");
+		SegmentRoute R5 = new SegmentRoute(60,C2,B2,40,"R5");
+		SegmentRoute R6 = new SegmentRoute(45,P2,C2,30,"R6");
+		SegmentRoute R7 = new SegmentRoute(35,C1,P2,30,"R7");
+		P1.addSegmentRoute(R2);
+		P1.addSegmentRoute(R3);
+		P2.addSegmentRoute(R7);
+		P2.addSegmentRoute(R6);
+		C1.addSeg(R1,R2,R3);
+		C2.addSeg(R3,R4,R5,R6);
+		
+		ElementRegulationFeux1 e1 = new ElementRegulationFeux1(C1);
+		ElementRegulationFeux1 e2 = new ElementRegulationFeux1(C2);	
+		
+		CapteurPresence captP1 = new CapteurPresence(R1, 42, true,e1);
+		CapteurPresence captP2 = new CapteurPresence(R6, 30, true,e2);
+		CapteurPresence captP3 = new CapteurPresence(R6, 20, false,e2);
+		CapteurVitesse captV1 = new CapteurVitesse(R1, 52, true,e1);
+		CapteurVitesse captV2 = new CapteurVitesse(R2, 74, false,e1);
+		CapteurVitesse captV3 = new CapteurVitesse(R3, 78, false,e1);
+		
+		capteurs.add(captP1);
+		capteurs.add(captP2);
+		capteurs.add(captP3);
+		capteurs.add(captV1);
+		capteurs.add(captV2);
+		capteurs.add(captV3);
+		
+		PanneauLimitation panneau1 = new PanneauLimitation(R2,true,30);
+		
+		Voiture v1 = new Voiture(2,65,R1,0,true);
+		listVoitures.add(v1);
+		
+		elements.add(e1);
+		elements.add(e2);
+	}
 	/**
 	 * Lancement algorithme avec intervalles de temps
 	 * @param list
 	 */
-	public void lancerSimulation(ArrayList<Voiture> list) 
+	public void lancerSimulation() 
 	{
 		t = new Timer();
-		t.schedule(new Intervalle(list), 0, 10000);//action / delai / periode
+		t.schedule(new Intervalle(listVoitures), 0, 10000);//action / delai / periode
     }
 	public static void addFeu(Feu f)
 	{
@@ -97,60 +154,60 @@ public class Main <T extends Capteur>
 	 */
 	public static void main(String[] args)
 	{
-		Barriere B1 = new Barriere();
-		Barriere B2 = new Barriere();
-		Barriere B3 = new Barriere();
+//		Barriere B1 = new Barriere();
+//		Barriere B2 = new Barriere();
+//		Barriere B3 = new Barriere();
+//		
+//		PassagePieton<FeuBicolore> P1 = new PassagePieton(0);
+//		PassagePieton<FeuTricolore> P2 = new PassagePieton(1);
+//		Carrefour C1 = new Carrefour(3, 0);
+//		Carrefour C2 = new Carrefour(4, 0);
+//		
+//		SegmentRoute R1 = new SegmentRoute(60,B1,C1,70,"R1");
+//		SegmentRoute R2 = new SegmentRoute(100,C1,P1,50,"R2");
+//		SegmentRoute R3 = new SegmentRoute(100,P1,C2,60,"R3");
+//		SegmentRoute R4 = new SegmentRoute(45,C2,B3,30,"R4");
+//		SegmentRoute R5 = new SegmentRoute(60,C2,B2,40,"R5");
+//		SegmentRoute R6 = new SegmentRoute(45,P2,C2,30,"R6");
+//		SegmentRoute R7 = new SegmentRoute(35,C1,P2,30,"R7");
+//		P1.addSegmentRoute(R2);
+//		P1.addSegmentRoute(R3);
+//		P2.addSegmentRoute(R7);
+//		P2.addSegmentRoute(R6);
+//		C1.addSeg(R1,R2,R3);
+//		C2.addSeg(R3,R4,R5,R6);
+//		
+//		ElementRegulationFeux1 e1 = new ElementRegulationFeux1(C1);
+//		ElementRegulationFeux1 e2 = new ElementRegulationFeux1(C2);	
+//		
+//		CapteurPresence captP1 = new CapteurPresence(R1, 42, true,e1);
+//		CapteurPresence captP2 = new CapteurPresence(R6, 30, true,e2);
+//		CapteurPresence captP3 = new CapteurPresence(R6, 20, false,e2);
+//		CapteurVitesse captV1 = new CapteurVitesse(R1, 52, true,e1);
+//		CapteurVitesse captV2 = new CapteurVitesse(R2, 74, false,e1);
+//		CapteurVitesse captV3 = new CapteurVitesse(R3, 78, false,e1);
+//		
+//		capteurs.add(captP1);
+//		capteurs.add(captP2);
+//		capteurs.add(captP3);
+//		capteurs.add(captV1);
+//		capteurs.add(captV2);
+//		capteurs.add(captV3);
+//		
+//		PanneauLimitation panneau1 = new PanneauLimitation(R2,true,30);
+//		
+//		Voiture v1 = new Voiture(2,65,R1,0,true);
+//		ArrayList<Voiture> listVoitures = new ArrayList<Voiture>();
+//		listVoitures.add(v1);
+//		
+//		elements.add(e1);
+//		elements.add(e2);
+	
 		
-		PassagePieton<FeuBicolore> P1 = new PassagePieton(0);
-		PassagePieton<FeuTricolore> P2 = new PassagePieton(1);
-		Carrefour C1 = new Carrefour(3, 0);
-		Carrefour C2 = new Carrefour(4, 0);
-		
-		SegmentRoute R1 = new SegmentRoute(60,B1,C1,70,"R1");
-		SegmentRoute R2 = new SegmentRoute(100,C1,P1,50,"R2");
-		SegmentRoute R3 = new SegmentRoute(100,P1,C2,60,"R3");
-		SegmentRoute R4 = new SegmentRoute(45,C2,B3,30,"R4");
-		SegmentRoute R5 = new SegmentRoute(60,C2,B2,40,"R5");
-		SegmentRoute R6 = new SegmentRoute(45,P2,C2,30,"R6");
-		SegmentRoute R7 = new SegmentRoute(35,C1,P2,30,"R7");
-		P1.addSegmentRoute(R2);
-		P1.addSegmentRoute(R3);
-		P2.addSegmentRoute(R7);
-		P2.addSegmentRoute(R6);
-		C1.addSeg(R1,R2,R3);
-		C2.addSeg(R3,R4,R5,R6);
-		
-		
-		ElementRegulationFeux1 e1 = new ElementRegulationFeux1(C1);
-		ElementRegulationFeux1 e2 = new ElementRegulationFeux1(C2);	
-		
-		CapteurPresence captP1 = new CapteurPresence(R1, 42, true,e1);
-		CapteurPresence captP2 = new CapteurPresence(R6, 30, true,e2);
-		CapteurPresence captP3 = new CapteurPresence(R6, 20, false,e2);
-		CapteurVitesse captV1 = new CapteurVitesse(R1, 52, true,e1);
-		CapteurVitesse captV2 = new CapteurVitesse(R2, 74, false,e1);
-		CapteurVitesse captV3 = new CapteurVitesse(R3, 78, false,e1);
-		
-		capteurs.add(captP1);
-		capteurs.add(captP2);
-		capteurs.add(captP3);
-		capteurs.add(captV1);
-		capteurs.add(captV2);
-		capteurs.add(captV3);
-		
-		PanneauLimitation panneau1 = new PanneauLimitation(R2,true,30);
-		
-		Voiture v1 = new Voiture(2,65,R1,0,true);
-		ArrayList<Voiture> listVoitures = new ArrayList<Voiture>();
-		listVoitures.add(v1);
-		
-		elements.add(e1);
-		elements.add(e2);
-		
-		Main simulation = new Main();
-		simulation.lancerSimulation(listVoitures);
-		//JonctionSimple j = new JonctionSimple(s1,s2);
 	}
+	public static Main getInstance(){
+	      return instance;
+	   }
 	/**
 	 * La détection de présence est remise a 0
 	 */
