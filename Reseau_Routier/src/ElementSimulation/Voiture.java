@@ -41,7 +41,7 @@ public class Voiture
 	 * @param chPos
 	 * @throws ExceptionVoiture
 	 */
-	public void setEtat(SegmentRoute s,boolean sens,int chPos) throws ExceptionVoiture{
+	public void setEtat(SegmentRoute s,boolean sens,int chPos){
 		segmentActuel = s;
 		sensActuel = sens;
 		vitesseActuelle = getVitLegale();;
@@ -54,7 +54,7 @@ public class Voiture
 	 * Comportement de la voiture sur la route, peut appeler les fonctions avancer des jonctions si nécessaire
 	 * @throws ExceptionVoiture
 	 */
-	public void avancer() throws ExceptionVoiture{
+	public void avancer(){
 		distanceRestante = vitesseActuelle;
 		do{
 				if(positionSegment + distanceRestante <= segmentActuel.getLongueur()+1)//on ne traverse pas la jonction

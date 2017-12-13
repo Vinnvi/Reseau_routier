@@ -11,7 +11,6 @@ import ElementControle.FeuTricolore;
 import ElementReseau.Barriere;
 import ElementReseau.PassagePieton;
 import ElementReseau.SegmentRoute;
-import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Voiture;
 
 public class VoitureTest {
@@ -36,7 +35,7 @@ public class VoitureTest {
 	 * @throws ExceptionVoiture
 	 */
 	@Test
-	public void behaviourCarTest() throws ExceptionVoiture {
+	public void behaviourCarTest() {
 		v1.avancer();
 		assertTrue(v1.getVitLegale() == v1.getVitesse()); //Limitation respectée
 		assertTrue(v1.getVitesse() == 60); //résultat corresponds a la limite

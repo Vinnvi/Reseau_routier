@@ -1,6 +1,5 @@
 package ElementReseau;
 
-import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Voiture;
 
 /**
@@ -13,7 +12,7 @@ public class Barriere extends Jonction{
 	public Barriere()
 	{
 	}
-	public void avancer(Voiture v) throws ExceptionVoiture{
+	public void avancer(Voiture v){
 		System.out.println("La voiture "+v.getId()+" a rencontre une barriere");
 		v.setEtat(v.getSegmentActuel(),v.getSens(),longueur);
 		v.arretVoiture();

@@ -2,11 +2,9 @@ package ElementReseau;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import ElementControle.Feu;
 import ElementControle.FeuBicolore;
 import ElementControle.FeuTricolore;
-import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Reseau;
 import ElementSimulation.Voiture;
 import enumerations.Tricolor;
@@ -72,7 +70,7 @@ public class Carrefour<F extends Feu> extends Jonction{
 		}
 	}
 	@Override
-	public void avancer(Voiture v) throws ExceptionVoiture {
+	public void avancer(Voiture v) {
 		SegmentRoute segmentActuel = v.getSegmentActuel();
 		//choix aleatoire prochain segment
 		SegmentRoute nextSegment=null;

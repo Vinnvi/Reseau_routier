@@ -129,13 +129,7 @@ public class Reseau <T extends Capteur>
 				System.out.println("Intervalle numero "+nbRepetitions+" ------------");
 				for(Voiture v : listVoitures)
 				{
-					try {
 						v.avancer();
-					} catch (ExceptionVoiture e) 
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 				}
 				nbRepetitions++;
 				refreshCapteurs();

@@ -2,7 +2,6 @@ package ElementReseau;
 import ElementControle.Feu;
 import ElementControle.FeuBicolore;
 import ElementControle.FeuTricolore;
-import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Voiture;
 import enumerations.Tricolor;
 
@@ -70,7 +69,7 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 		}
 	}
 	@Override
-	public void avancer(Voiture v) throws ExceptionVoiture{
+	public void avancer(Voiture v){
 		if(v.getSens())
 			checkColor(feuT,v,segmentsLies.get(0));
 		else
@@ -83,7 +82,7 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 	 * @param s
 	 * @throws ExceptionVoiture
 	 */
-	public void checkColor(F chFeu,Voiture v, SegmentRoute s) throws ExceptionVoiture
+	public void checkColor(F chFeu,Voiture v, SegmentRoute s)
 	{
 		if(chFeu.getCouleur().equals(Tricolor.Vert))
 		{

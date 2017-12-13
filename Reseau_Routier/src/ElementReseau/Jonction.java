@@ -2,8 +2,6 @@ package ElementReseau;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import ElementSimulation.ExceptionVoiture;
 import ElementSimulation.Voiture;
 
 /**
@@ -16,7 +14,7 @@ public abstract class Jonction {
 	protected ArrayList <SegmentRoute>  segmentsLies = new ArrayList<>();
 	
 	//utile de mettre distance restante?
-	public abstract void avancer(Voiture v) throws ExceptionVoiture;
+	public abstract void avancer(Voiture v);
 	public abstract void notifPresence(boolean chSens, Voiture v);
 	public void addSegmentRoute(SegmentRoute s){
 		segmentsLies.add(s);
