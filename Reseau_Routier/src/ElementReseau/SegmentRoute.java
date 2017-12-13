@@ -10,7 +10,7 @@ import ElementSimulation.Voiture;
 
 /**
  * Segment de route entre deux jonctions
- * Caractéristiques d'une route, des capteurs et est relié a 2 jonctions
+ * Caracteristiques d'une route, des capteurs et est relie a 2 jonctions
  * @param <T>
  * @param <C>
  * @param <S>

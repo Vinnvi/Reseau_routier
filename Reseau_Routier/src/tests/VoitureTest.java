@@ -37,40 +37,40 @@ public class VoitureTest {
 	@Test
 	public void behaviourCarTest() {
 		v1.avancer();
-		assertTrue(v1.getVitLegale() == v1.getVitesse()); //Limitation respect�e
+		assertTrue(v1.getVitLegale() == v1.getVitesse()); //Limitation respectee
 		assertTrue(v1.getVitesse() == 60); //r�sultat corresponds a la limite
-		assertTrue(v1.getSegmentActuel() == R1); //On a pas chang� de segment
+		assertTrue(v1.getSegmentActuel() == R1); //On a pas change de segment
 		
 		v1.avancer();
-		assertTrue(v1.getSegmentActuel() == R2); //On est d�sormais sur R2
-		assertTrue(v1.getVitLegale() == v1.getVitesse()); //Limitation respect�e
-		assertTrue(v1.getVitesse() == 30); //r�sultat corresponds a la limite
+		assertTrue(v1.getSegmentActuel() == R2); //On est desormais sur R2
+		assertTrue(v1.getVitLegale() == v1.getVitesse()); //Limitation respectee
+		assertTrue(v1.getVitesse() == 30); //resultat corresponds a la limite
 		assertTrue(v1.getPositionSegment() == 30);
 		
 		v1.setEtat(R2, false, 10);
 		v1.avancer();
 		assertTrue(v1.getSegmentActuel() == R2); //On est toujours sur R2
-		assertTrue(v1.getVitLegale() == v1.getVitesse()); //Limitation respect�e
-		assertTrue(v1.getVitesse() == 30); //r�sultat corresponds a la limite
+		assertTrue(v1.getVitLegale() == v1.getVitesse()); //Limitation respectee
+		assertTrue(v1.getVitesse() == 30); //resultat corresponds a la limite
 		assertTrue(v1.getPositionSegment() == 40);
 		
 		P1.changerFeux(); //feu rouge, on veut qu'il soit vert
 		v1.avancer();
 		assertTrue(v1.getSegmentActuel() == R1); //On est sur R1
-		assertTrue(v1.getVitLegale() == v1.getVitesse()); //Limitation respect�e
-		assertTrue(v1.getVitesse() == 60); //r�sultat corresponds a la limite
+		assertTrue(v1.getVitLegale() == v1.getVitesse()); //Limitation respectee
+		assertTrue(v1.getVitesse() == 60); //resultat corresponds a la limite
 		assertTrue(v1.getPositionSegment() == 9);
 		
 		v1.avancer();
 		assertTrue(v1.getSegmentActuel() == R1); //On est toujours sur R1
-		assertTrue(v1.getVitLegale() == v1.getVitesse()); //Limitation respect�e
-		assertTrue(v1.getVitesse() == 60); //r�sultat corresponds a la limite
+		assertTrue(v1.getVitLegale() == v1.getVitesse()); //Limitation respectee
+		assertTrue(v1.getVitesse() == 60); //resultat corresponds a la limite
 		assertTrue(v1.getPositionSegment() == 69);
 		
 		v1.avancer();
 		assertTrue(v1.getSegmentActuel() == R1); //On est toujours sur R1
-		assertTrue(v1.getVitesse() == 60); //On a rencontr� une barri�re mais on garde quand m�me vitesse car changement instantan� � chaque intervalle
-		assertTrue(v1.getPositionSegment() == 80); //On est a la fin du segment, devant la barri�re
+		assertTrue(v1.getVitesse() == 60); //On a rencontre une barriere mais on garde quand meme vitesse car changement instantan� � chaque intervalle
+		assertTrue(v1.getPositionSegment() == 80); //On est a la fin du segment, devant la barriere
 		
 		fail("Not yet implemented");
 	}

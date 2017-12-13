@@ -2,7 +2,7 @@ package ElementSimulation;
 import ElementReseau.SegmentRoute;
 
 /**
- * Implémentation d'une voiture avec ses attributs ainsi que les méthode pour avancer dans le parcours
+ * Implementation d'une voiture avec ses attributs ainsi que les methode pour avancer dans le parcours
  */
 public class Voiture 
 {
@@ -51,7 +51,7 @@ public class Voiture
 
 	/**
 	 * Fonction principale de la voiture pour avancer
-	 * Comportement de la voiture sur la route, peut appeler les fonctions avancer des jonctions si nécessaire
+	 * Comportement de la voiture sur la route, peut appeler les fonctions avancer des jonctions si necessaire
 	 * @throws ExceptionVoiture
 	 */
 	public void avancer(){
@@ -64,13 +64,13 @@ public class Voiture
 					positionSegment += distanceRestante;
 					distanceRestante = 0;
 				}
-				else //On a possibilité de traverser jonction
+				else //On a possibilite de traverser jonction
 				{
 					//Fin du parcours restant du segment	
 					segmentActuel.useCapteur(this, positionSegment,segmentActuel.getLongueur());
 					distanceRestante = positionSegment + distanceRestante - segmentActuel.getLongueur();
 					positionSegment = segmentActuel.getLongueur();
-					//On arrive à la Jonction
+					//On arrive a la Jonction
 					if(sensActuel)
 						segmentActuel.getJonctionDroite().avancer(this);
 					else
@@ -82,7 +82,7 @@ public class Voiture
 						distanceRestante = vitesseActuelle;
 					
 					/*
-					if(segmentActuel.getJonctionDroite().getSegmentsLies().size() <= 1){ // La jonction n'est liée à aucun autre segment
+					if(segmentActuel.getJonctionDroite().getSegmentsLies().size() <= 1){ // La jonction n'est liï¿½e ï¿½ aucun autre segment
 						vitesseActuelle = 0;
 						System.out.println("Fin de route : la voiture a atteint le bout de la route");
 					}*/

@@ -144,7 +144,7 @@ public class Reseau <T extends Capteur>
 		}
     }
 	/**
-	 * Partie principale, impl�mentation du r�seau et lancement de l'algorithme
+	 * Partie principale, implementation du reseau et lancement de l'algorithme
 	 * @param args
 	 */
 	public static void main(String[] args)
@@ -204,7 +204,7 @@ public class Reseau <T extends Capteur>
 	      return instance;
 	   }
 	/**
-	 * La d�tection de pr�sence est remise a 0
+	 * La detection de presence est remise a 0
 	 */
 	public void refreshCapteurs(){
 		Iterator<Capteur> i = capteurs.iterator();
