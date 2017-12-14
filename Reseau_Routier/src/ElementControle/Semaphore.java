@@ -2,6 +2,7 @@ package ElementControle;
 
 import ElementSimulation.Voiture;
 
+@SuppressWarnings("rawtypes")
 public abstract class Semaphore <E extends ElementRegulation>  {
 
 		private E e;

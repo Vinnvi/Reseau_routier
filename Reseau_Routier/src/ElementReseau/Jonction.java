@@ -8,10 +8,10 @@ import ElementSimulation.Voiture;
  * Jonction abstraite
  * Classe m�re de Carrefour, Barri�re, PassagePi�ton...
  */
+@SuppressWarnings("rawtypes")
 public abstract class Jonction {
 	protected final int longueur = 1;
 	private String name;
-	private int idJonction;
 	protected ArrayList <SegmentRoute>  segmentsLies = new ArrayList<>();
 	
 	//utile de mettre distance restante?

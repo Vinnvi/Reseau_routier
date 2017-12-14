@@ -2,6 +2,7 @@ package ElementControle;
 
 import enumerations.Tricolor;
 
+@SuppressWarnings("rawtypes")
 public abstract class Feu extends Semaphore{
 	Tricolor couleur;
 	public Tricolor getCouleur() {

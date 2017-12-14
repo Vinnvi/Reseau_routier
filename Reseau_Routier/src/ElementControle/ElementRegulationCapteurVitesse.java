@@ -9,6 +9,7 @@ import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 import enumerations.Tricolor;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class ElementRegulationCapteurVitesse <J extends Jonction,T extends Feu> extends ElementRegulation{
 	ArrayList<Voiture> voitures = new ArrayList<>();
 	@Override

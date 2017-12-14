@@ -14,6 +14,7 @@ import enumerations.Tricolor;
  * Une fois le feu pass�, la voiture choisit un segment de facon al�atoire
  * @param <T>
  */
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class Carrefour<F extends Feu> extends Jonction{
 	
 	ArrayList <F> feux; // L'indice du feu correspond � l'indice du segment dans segements liees

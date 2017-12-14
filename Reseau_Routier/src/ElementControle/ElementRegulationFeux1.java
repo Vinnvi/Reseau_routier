@@ -6,6 +6,7 @@ import ElementReseau.Carrefour;
 import ElementSimulation.Voiture;
 import enumerations.Tricolor;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class ElementRegulationFeux1 extends ElementRegulation{
 	int timer=0;
 	

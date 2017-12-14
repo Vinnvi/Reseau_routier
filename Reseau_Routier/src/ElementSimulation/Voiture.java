@@ -4,9 +4,11 @@ import ElementReseau.SegmentRoute;
 /**
  * Implementation d'une voiture avec ses attributs ainsi que les methode pour avancer dans le parcours
  */
+@SuppressWarnings("rawtypes")
 public class Voiture 
 {
 	private int id;
+	@SuppressWarnings("unused")
 	private int longueur;
 	private int vitMax;
 	private SegmentRoute segmentActuel;

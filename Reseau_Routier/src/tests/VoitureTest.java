@@ -6,18 +6,19 @@ package tests;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-
 import ElementControle.FeuTricolore;
 import ElementReseau.Barriere;
 import ElementReseau.PassagePieton;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 
+@SuppressWarnings("rawtypes")
 public class VoitureTest {
 	SegmentRoute R1,R2;
 	PassagePieton P1;
 	Barriere B1;
 	Voiture v1;
+	@SuppressWarnings("unchecked")
 	/**
 	 * @throws java.lang.Exception
 	 */

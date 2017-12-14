@@ -6,6 +6,7 @@ import ElementSimulation.Voiture;
  * Capteur de Vitesse qui envoie comme information la presence des voitures et vitesses
  *
  */
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class CapteurVitesse extends Capteur
 {
 	public CapteurVitesse(SegmentRoute chSegment, int chPos, boolean chSens,ElementRegulation e)

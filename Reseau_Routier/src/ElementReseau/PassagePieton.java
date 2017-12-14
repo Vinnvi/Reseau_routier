@@ -10,6 +10,7 @@ import enumerations.Tricolor;
  * Seul la couleur des feux importe au trajet de la voiture
  * @param <F>
  */
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class PassagePieton<F extends Feu> extends JonctionSimple{
 	F feuT;
 	F feuF;
@@ -18,7 +19,6 @@ public class PassagePieton<F extends Feu> extends JonctionSimple{
 	 * Constructeur automatique en ne prenant en compte que le type de feu
 	 * @param typeFeu
 	 */
-	@SuppressWarnings("unchecked")
 	public PassagePieton(int typeFeu,String name)
 	{
 		if(typeFeu == 0) // Feux bicolors

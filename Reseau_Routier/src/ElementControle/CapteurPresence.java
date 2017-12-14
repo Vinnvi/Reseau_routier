@@ -1,12 +1,12 @@
 package ElementControle;
-import ElementReseau.Jonction;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 
 /**
- * Capteur de Pr�sence qui s'occupe uniquement de r�f�rencer les passages et d'envoyer cette information
+ * Capteur de Presence qui s'occupe uniquement de referencer les passages et d'envoyer cette information
  *
  */
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class CapteurPresence extends Capteur
 {
 	public CapteurPresence(SegmentRoute chSegment, int chPos, boolean chSens,ElementRegulation e)

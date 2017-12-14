@@ -2,8 +2,6 @@ package ElementReseau;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 import ElementControle.Capteur;
 import ElementControle.Semaphore;
 import ElementSimulation.Voiture;
@@ -15,6 +13,7 @@ import ElementSimulation.Voiture;
  * @param <C>
  * @param <S>
  */
+@SuppressWarnings("rawtypes")
 public class SegmentRoute<J extends Jonction,C extends Capteur,S extends Semaphore> {
 	String name;
 	private int longueur;

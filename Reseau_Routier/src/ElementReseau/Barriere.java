@@ -7,10 +7,6 @@ import ElementSimulation.Voiture;
  * La voiture s'arrete face a une barriere
  */
 public class Barriere extends Jonction{
-	private SegmentRoute seg1;
-	
-	
-	
 	public Barriere(String name)
 	{
 		this.setName(name);
@@ -23,6 +19,5 @@ public class Barriere extends Jonction{
 	@Override
 	public void notifPresence(boolean chSens,Voiture v) {
 		// TODO Auto-generated method stub
-		
 	}
 }

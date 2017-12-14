@@ -1,18 +1,16 @@
 package ElementControle;
-import java.util.Observable;
-import java.util.Observer;
-
 import ElementReseau.Jonction;
 import ElementReseau.SegmentRoute;
 import ElementSimulation.Voiture;
 
 
 /**
- * Impl�mentation abstraite d'un capteur
+ * Implementation abstraite d'un capteur
  *
  * @param <J>
  * @param <E>
  */
+@SuppressWarnings("rawtypes")
 public abstract class Capteur<J extends Jonction,E extends ElementRegulation>
 {
 	protected SegmentRoute segment;

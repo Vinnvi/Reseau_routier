@@ -8,6 +8,7 @@ import ElementSimulation.Voiture;
  * @author Florian
  *
  */
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class PanneauLimitation extends Semaphore{
 	int vitesseMax;
 	
